@@ -1,4 +1,4 @@
-import Menu from 'components/Menu'
+import Menu from '../../components/Menu'
 import * as S from './styles'
 
 export type AuthProps = {
@@ -7,7 +7,7 @@ export type AuthProps = {
   children: React.ReactNode
 }
 
-const Auth = ({ title, subTitle, children }: AuthProps) => (
+const Login = ({ title, subTitle, children }: AuthProps) => (
   <S.Wrapper>
     <Menu />
     <S.Container>
@@ -19,4 +19,4 @@ const Auth = ({ title, subTitle, children }: AuthProps) => (
   </S.Wrapper>
 )
 
-export default Auth
+export default Login
