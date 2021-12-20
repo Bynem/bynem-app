@@ -6,16 +6,16 @@ export const Nav = styled.head`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row-reverse;
   flex-wrap: wrap;
   background: white;
-  /* position: absolute; */
-  height: 10vh;
+  height: auto;
   top: 0;
   left: 0;
   right: 0;
-  border-bottom: 2px solid #F2F2F2;
   /* background: rgb(221,221,221); */
   /* background: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(245,245,245,1) 52%, rgba(255,255,255,1) 100%); */
+ 
 `;
 
 export const Hamburger = styled.div`

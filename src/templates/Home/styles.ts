@@ -15,13 +15,21 @@ export const SubTitle = styled.p`
 
 export const Tools = styled.div`
     width: 100%;
-    height: 8vh;
-    background-color: #f5f5f5;
     margin-top: 10vh;
+    margin-bottom: 5vh;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    
 `
-export const divButton = styled.div``
+export const divButton = styled.div`
+    margin: 0 0 0 2rem;
+     @media (max-width: 400px){
+        margin: 0;
+
+    }
+`
 
 export const Button = styled.button`
     border: none;
@@ -36,8 +44,11 @@ export const Button = styled.button`
     }
 `
 export const divInput = styled.div`
-    margin: 0 0 0 2rem; 
-    margin-right: auto;
+    margin: 0 2rem 0 0 ; 
+     @media (max-width: 400px){
+        margin: 0;
+
+    }
 `
 
 export const Input = styled.input`
