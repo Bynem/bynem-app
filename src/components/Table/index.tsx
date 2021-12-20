@@ -43,7 +43,7 @@ export default function Table() {
 }
 export const TableDiv = styled.div`
     height: 50vh;
-    width: "70%" 
+    width: 70% ;
     margin-left: auto;
     margin-right: auto;
 `

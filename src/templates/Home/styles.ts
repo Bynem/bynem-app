@@ -20,7 +20,7 @@ export const Tools = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
     
 `
 export const divButton = styled.div`
