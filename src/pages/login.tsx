@@ -1,5 +1,5 @@
-import login from '../templates/login'
+import Login from '../templates/login'
 
-export default function Login() {
+export default function index() {
     return <Login />
 }

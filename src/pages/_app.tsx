@@ -12,6 +12,9 @@ function App({ Component, pageProps }: AppProps) {
         <title>Bynem</title>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#06092B" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyles />
       <AuthProvider>
