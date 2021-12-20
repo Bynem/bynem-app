@@ -16,9 +16,7 @@ export default function Home() {
                     <S.divButton>
                         <S.Button>Criar Simulado</S.Button>
                     </S.divButton>
-
                 </S.Tools>
-
             </S.Content>
             <Footer bottom={true} />
         </>

@@ -19,7 +19,3 @@ export const deleteUser = () => {
   return localStorage.removeItem('user')
 }
 
-export const getCurrentUser = () => {
-  const user = localStorage.getItem('user')
-  return JSON.parse(user!)
-}
