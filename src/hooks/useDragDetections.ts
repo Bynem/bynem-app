@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Settings as SliderProps } from 'react-slick'
 
-export type DefaultSliderProps = SliderProps
 
 /**
  * Threshold from which mouse movement with pressed mouse button
