@@ -1,6 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect } from "react";
-import useRequest, { useRequestConfig } from '../../hooks/useRequest'
 import styled from "styled-components";
 
 export type GridRowsProp = {
@@ -35,26 +34,11 @@ const columns: GridColDef[] = [
 ];
 
 export default function Table() {
-    const { request } = useRequest()
-    useEffect(() => {
-        const getTableInfo = async () => {
-            const config: useRequestConfig = {
-                method: 'GET',
-                url: '/api/Simulado'
-            }
-
-            const response = await request(config)
-            console.log("response", response)
-        }
-        getTableInfo()
-
-    }, [])
-
 
     return (
-        <div style={{ height: "50vh", width: "70%" }}>
+        <TableDiv>
             <DataGrid rows={rows} columns={columns} onCellClick={(e) => { console.log(e) }} />
-        </div>
+        </TableDiv>
     );
 }
 export const TableDiv = styled.div`
