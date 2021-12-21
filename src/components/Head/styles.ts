@@ -23,7 +23,7 @@ export const Hamburger = styled.div`
   flex-direction: column;
   cursor: pointer;
 
-  span {
+  .spanHamburger{
     height: 2px;
     width: 25px;
     background: #e611b6;

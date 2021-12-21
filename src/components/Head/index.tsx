@@ -16,9 +16,9 @@ export default function Head() {
         <Image height={70} width={170} src='/bynem0.png' />
       </Link>
       <S.Hamburger onClick={() => setIsOpen(!isOpen)}>
-        <span />
-        <span />
-        <span />
+        <span className='spanHamburger' />
+        <span className='spanHamburger' />
+        <span className='spanHamburger' />
       </S.Hamburger>
       <S.Menu isOpen={isOpen}>
         <Link href="/2">

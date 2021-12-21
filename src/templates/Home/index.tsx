@@ -2,10 +2,11 @@ import React from 'react';
 import Head from "../../components/Head"
 import Footer from "../../components/Footer"
 import * as S from './styles'
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Table from '../../components/Table'
-
+// import Table from '../../components/TableA';
+import SearchIcon from '@mui/icons-material/Search';
+import Image from 'next/image'
 export default function Home() {
     return (
         <>
@@ -15,14 +16,14 @@ export default function Home() {
                 <S.SubTitle>Estude utilizando o sistema de simulados totalmente grátis</S.SubTitle>
                 <S.Tools>
                     <S.divButton>
-                        <Button variant="contained" color="success">
+                        <S.Button >
                             Criar Simulado
-                        </Button>
+                        </S.Button >
                     </S.divButton>
-                    <S.divInput>
-                        <S.Input placeholder="Pesquisar"
-                        ></S.Input>
-                    </S.divInput>
+                    <S.SearchContainer>
+                        <S.Input type="text" id="search-bar" placeholder="Pesquisar" />
+                        <a href="#"><SearchIcon /></a>
+                    </S.SearchContainer>
                 </S.Tools>
                 <Divider />
                 <Table />

@@ -14,7 +14,10 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#06092B" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" /><link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyles />
