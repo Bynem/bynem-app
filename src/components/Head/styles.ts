@@ -19,7 +19,6 @@ export const Nav = styled.head`
 `;
 
 export const Hamburger = styled.div`
-  display: none;
 
   flex-direction: column;
   cursor: pointer;
@@ -44,7 +43,7 @@ export const Menu = styled.div`
   position: relative;
 
   @media (max-width: 768px) {
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
     flex-direction: column;
     max-height: ${({ isOpen }: NavBar) => (isOpen ? "300px" : "0")};
     transition: max-height 0.3s ease-in;

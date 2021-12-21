@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Content = styled.div`
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
 `
 
 export const Title = styled.p`

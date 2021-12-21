@@ -1,7 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-
+import axios from "axios";
 export type GridRowsProp = {
     id: number;
     name: string;
@@ -34,6 +34,18 @@ const columns: GridColDef[] = [
 ];
 
 export default function Table() {
+    axios.get('https://bynem-app.herokuapp.com/api/Simulado')
+        .then(function (response) {
+            // handle success
+            console.log(response);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function () {
+            // always executed
+        });
 
     return (
         <TableDiv>

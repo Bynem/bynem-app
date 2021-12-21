@@ -20,7 +20,7 @@ export default function Home() {
                         </Button>
                     </S.divButton>
                     <S.divInput>
-                        <S.Input
+                        <S.Input placeholder="Pesquisar"
                         ></S.Input>
                     </S.divInput>
                 </S.Tools>
