@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
-export const Content = styled.div``
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+`
 
 export const Title = styled.p`
     font-size: 3rem;
