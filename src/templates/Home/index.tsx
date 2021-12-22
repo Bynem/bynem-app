@@ -43,8 +43,8 @@ export default function Home() {
                     </S.Tools>
                     <Table />
                 </S.Content>
+                <Footer />
             </S.Container>
-            <Footer />
         </>
     )
 }
