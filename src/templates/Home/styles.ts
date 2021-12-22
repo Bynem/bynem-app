@@ -18,8 +18,8 @@ export const SubTitle = styled.p`
 
 export const Tools = styled.div`
     width: 100%;
-    margin-top: 10vh;
-    margin-bottom: 5vh;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
     display: flex;
     justify-content: space-between;
     align-items: center;

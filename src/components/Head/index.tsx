@@ -13,7 +13,7 @@ export default function Head() {
   return (<>
     <S.Nav>
       <Link href="">
-        <Image height={70} width={170} src='/bynem0.png' />
+        <Image height={70} width={170} src='/bynem01.png' />
       </Link>
       <S.Hamburger onClick={() => setIsOpen(!isOpen)}>
         <span className='spanHamburger' />
@@ -29,7 +29,6 @@ export default function Head() {
         </Link>
       </S.Menu>
     </S.Nav>
-    <Divider />
   </>
   );
 }

@@ -8,12 +8,12 @@ export const Footer = styled.footer`
     bottom: ${({ bottom }: FooterProps) => (bottom ? '0' : null)};
     right: 0px;
     left: 0px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
-    font-family: Benzin ExtraBold;
+    font-family: roboto, sans-serif;
     p{
         
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 `

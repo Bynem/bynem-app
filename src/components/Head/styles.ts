@@ -14,7 +14,7 @@ export const Nav = styled.head`
   left: 0;
   right: 0;
   /* background: rgb(221,221,221); */
-  /* background: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(245,245,245,1) 52%, rgba(255,255,255,1) 100%); */
+  background: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(245,245,245,1) 52%, rgba(255,255,255,1) 100%);
  
 `;
 
