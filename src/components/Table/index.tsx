@@ -18,7 +18,7 @@ const columns = [
         title: '',
         dataIndex: 'simuled',
         key: 'simuled',
-        render: (record) => <a href={record.simuled}>Simulado</a>,
+        render: (record) => <a href={record.simuled}>Simular</a>,
     },
 ];
 
