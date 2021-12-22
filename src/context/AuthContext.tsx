@@ -68,14 +68,14 @@ export function AuthProvider({ children }: AuthProviderProp) {
       sendToken: true
     }
 
-    const response = await request(config)
+    //const response = await request(config)
 
     const token = getCurrentToken()
 
-    if (token && response) {
-      setUser(response)
-      saveUser(response)
-    }
+    // if (token && response) {
+    //   setUser(response)
+    //   saveUser(response)
+    // }
   }
 
   async function signIn({ email, password }: SignInData): Promise<any> {
