@@ -119,7 +119,7 @@ const data = [
 export default function TableAnt() {
     return (
         <DivTable>
-            <Table loading={false} columns={columns} dataSource={data} />
+            <Table pagination={{ pageSize: 8 }} loading={false} columns={columns} dataSource={data} />
         </DivTable>
 
     )
