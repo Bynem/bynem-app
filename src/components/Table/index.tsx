@@ -1,58 +1,124 @@
-import { DataGrid, GridColDef, ptBR } from "@mui/x-data-grid";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import Link from "@material-ui/core/Link";
+import React from 'react';
+import { Table } from 'antd';
+import 'antd/dist/antd.css';
 
-export type GridRowsProp = {
-    id: number;
-    name: string;
-    author: string;
-    simuled: string;
-}
-
-const columns: GridColDef[] = [
-    { field: "id", hide: true },
-    { field: "titulo", headerName: "Nome", width: 150, flex: 1 },
-    { field: "author", headerName: "Autor", width: 200, flex: 0.5 },
+const columns = [
     {
-        field: "linkSimulado",
-        headerName: "Simulado",
-        width: 50,
-        flex: 0.1,
-        renderCell: (params) => (
-            <Link href={`/`}>{params.value?.toString()}</Link>
-        )
-    }
-]
+        title: 'Nome',
+        dataIndex: 'name',
+        key: 'name',
+    },
+    {
+        title: 'Autor',
+        dataIndex: 'author',
+        key: 'author',
+    },
 
-export default function Table() {
-    const [simulados, setSimulados] = useState<GridRowsProp[]>([] as GridRowsProp[]);
+    {
+        title: '',
+        dataIndex: 'simuled',
+        key: 'simuled',
+        render: (record) => <a href={record.simuled}>Simulado</a>,
+    },
+];
 
-    useEffect(() => {
-        async function getSimulados() {
-            await axios.get('http://localhost:5000/api/Simulado')
-                .then(function (response) {
-                    setSimulados(response.data);
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                });
-        }
+const data = [
+    {
+        key: '1',
+        name: 'John Brown',
+        author: 32,
+        simuled: 'New York No. 1 Lake Park',
+    },
+    {
+        key: '2',
+        name: 'Jim Green',
+        author: 42,
+        simuled: 'London No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 32,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 32,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 32,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 32,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 32,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 32,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 32,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 32,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 99,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 99,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 99,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 99,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+    {
+        key: '3',
+        name: 'Joe Black',
+        author: 99,
+        simuled: 'Sidney No. 1 Lake Park',
+    },
+];
 
-        getSimulados();
-    }, []);
-
+export default function TableAnt() {
     return (
-        <TableDiv>
-            <DataGrid localeText={ptBR.components.MuiDataGrid.defaultProps.localeText} rows={simulados} columns={columns} onCellClick={(e) => { console.log(e) }} />
-        </TableDiv>
-    );
-}
 
-export const TableDiv = styled.div`
-    height: 50vh;
-    margin-left: 2rem;
-    margin-right: 2rem;
-`
+        <Table loading={false} columns={columns} dataSource={data} />
+
+    )
+}

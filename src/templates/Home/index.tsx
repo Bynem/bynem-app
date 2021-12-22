@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from "../../components/Head"
 import Footer from "../../components/Footer"
 import * as S from './styles'
-import Divider from '@mui/material/Divider';
-import Table, { GridRowsProp } from '../../components/Table'
-import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
+import { Input, Space } from 'antd';
+import Table from '../../components/Table'
 
 export default function Home() {
-    const [simulados, setSimulados] = useState<GridRowsProp[]>([] as GridRowsProp[]);
-    
+    const { Search } = Input;
     async function getSimulados() {
         await axios.get('http://localhost:5000/api/Simulado', {
-             params: { filter: "teste" } //altera aqui para o filtro do input e passar os dados para table
+            params: { filter: "teste" } //altera aqui para o filtro do input e passar os dados para table
         })
             .then(function (response) {
-                setSimulados(response.data);
+                console.log(response);
+
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             });
     }
-
+    const onSearch = value => console.log(value);
     return (
         <>
             <Head />
@@ -36,14 +35,15 @@ export default function Home() {
                         </S.Button >
                     </S.divButton>
                     <S.SearchContainer>
-                        <S.Input type="text" id="search-bar" placeholder="Pesquisar" />
-                        <a href="#"><SearchIcon onClick={() => getSimulados()}/></a>
+                        <Space direction="vertical">
+                            <Search placeholder="Pesquisar" onSearch={onSearch} enterButton />
+                        </Space>
                     </S.SearchContainer>
+
                 </S.Tools>
-                <Divider />
                 <Table />
             </S.Content>
-            <Footer bottom={true} />
+            <Footer bottom={false} />
         </>
     )
 }
