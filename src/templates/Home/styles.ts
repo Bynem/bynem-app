@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
-export const Content = styled.div`
+export const Content = styled.main`
     display: flex !important;
     flex-direction: column !important;
+    user-select: none;
+    background-color: white !important;
 `
 
 export const Title = styled.p`

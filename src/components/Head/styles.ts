@@ -21,8 +21,7 @@ export const Nav = styled.head`
 export const Hamburger = styled.div`
 
   flex-direction: column;
-  cursor: pointer;
-
+  user-select: none;
   .spanHamburger{
     height: 2px;
     width: 25px;

@@ -1,19 +1,17 @@
 import styled from 'styled-components'
-import { FooterProps } from '.'
 
 export const Footer = styled.footer`
-    height: 8vh;
-    background-color: #F2F2F2;
-    position: absolute;
-    bottom: ${({ bottom }: FooterProps) => (bottom ? '0' : null)};
+    bottom: 0px;
     right: 0px;
     left: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0.5rem 0 0 0;
     font-family: roboto, sans-serif;
-    p{
-        
-        font-size: 1.1rem;
-    }
+    background-color: #F2F2F2;
+    text-align: center;
+    margin: 0;
+    font-weight: 600;
+
+`
+export const DivImageContainer = styled.div`
+
 `
