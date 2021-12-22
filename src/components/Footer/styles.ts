@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Footer = styled.footer`
     height: 10vh;
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
     bottom: 0;
