@@ -5,9 +5,9 @@ export const Footer = styled.footer`
     height: 5vh;
     background-color: #F2F2F2;
     position: absolute;
+    right: 0;
+    left: 0;
     bottom: ${({ bottom }: FooterProps) => (bottom ? '0' : null)};
-    right: 0px;
-    left: 0px;
     justify-content: center;
     align-items: center;
     display: flex;
