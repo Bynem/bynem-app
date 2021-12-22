@@ -43,7 +43,7 @@ export default function Home() {
                 <Divider />
                 <Table />
             </S.Content>
-            <Footer bottom={false} />
+            <Footer bottom={true} />
         </>
     )
 }
