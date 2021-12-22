@@ -2,8 +2,7 @@ import styled from 'styled-components'
 import { FooterProps } from '.'
 
 export const Footer = styled.footer`
-    height: 10vh;
-    width: 100vw;
+    height: 8vh;
     background-color: #F2F2F2;
     position: absolute;
     bottom: ${({ bottom }: FooterProps) => (bottom ? '0' : null)};

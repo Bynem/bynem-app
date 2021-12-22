@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from 'next/image'
 import Link from 'next/link'
 import * as S from './styles'
+import { Divider } from "antd";
 
 export type NavBar = {
   isOpen: boolean
@@ -28,6 +29,7 @@ export default function Head() {
         </Link>
       </S.Menu>
     </S.Nav>
+    <Divider />
   </>
   );
 }

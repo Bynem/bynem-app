@@ -3,7 +3,7 @@ import Head from "../../components/Head"
 import Footer from "../../components/Footer"
 import * as S from './styles'
 import axios from 'axios';
-import { Input, Space } from 'antd';
+import { Divider, Input, Space } from 'antd';
 import Table from '../../components/Table'
 
 export default function Home() {
@@ -39,8 +39,8 @@ export default function Home() {
                             <Search placeholder="Pesquisar" onSearch={onSearch} enterButton />
                         </Space>
                     </S.SearchContainer>
-
                 </S.Tools>
+                <Divider />
                 <Table />
             </S.Content>
             <Footer bottom={false} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
+import { DivTable } from './styles';
 
 const columns = [
     {
@@ -117,8 +118,9 @@ const data = [
 
 export default function TableAnt() {
     return (
-
-        <Table loading={false} columns={columns} dataSource={data} />
+        <DivTable>
+            <Table loading={false} columns={columns} dataSource={data} />
+        </DivTable>
 
     )
 }
