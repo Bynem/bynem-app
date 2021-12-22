@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const Content = styled.main`
+export const Container = styled.main`
+    height: 100%;
+`
+
+export const Content = styled.div`
     display: flex !important;
     flex-direction: column !important;
     user-select: none;

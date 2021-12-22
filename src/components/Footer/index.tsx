@@ -5,10 +5,10 @@ export type FooterProps = {
   bottom: boolean
 }
 
-export default function Footer({ bottom }: FooterProps) {
+export default function Footer() {
 
   return (
-    <S.Footer bottom={bottom}>
+    <S.Footer >
       <Image src={"/bynem3.png"} width={180} height={18} />
     </S.Footer>
   )
