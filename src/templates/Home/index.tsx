@@ -23,26 +23,28 @@ export default function Home() {
     }
     const onSearch = value => console.log(value);
     return (
-        <S.Container>
-            <Head />
-            <S.Content>
-                <S.Title>Simulados</S.Title>
-                <S.SubTitle>Estude utilizando o sistema de simulados totalmente grátis</S.SubTitle>
-                <S.Tools>
-                    <S.divButton>
-                        <S.Button >
-                            Criar Simulado
-                        </S.Button >
-                    </S.divButton>
-                    <S.SearchContainer>
-                        <Space direction="vertical">
-                            <Search placeholder="Pesquisar" onSearch={onSearch} enterButton />
-                        </Space>
-                    </S.SearchContainer>
-                </S.Tools>
-                <Table />
-            </S.Content>
+        <>
+            <S.Container>
+                <Head />
+                <S.Content>
+                    <S.Title>Simulados</S.Title>
+                    <S.SubTitle>Estude utilizando o sistema de simulados totalmente grátis</S.SubTitle>
+                    <S.Tools>
+                        <S.divButton>
+                            <S.Button >
+                                Criar Simulado
+                            </S.Button >
+                        </S.divButton>
+                        <S.SearchContainer>
+                            <Space direction="vertical">
+                                <Search placeholder="Pesquisar" onSearch={onSearch} enterButton />
+                            </Space>
+                        </S.SearchContainer>
+                    </S.Tools>
+                    <Table />
+                </S.Content>
+            </S.Container>
             <Footer />
-        </S.Container>
+        </>
     )
 }
