@@ -11,10 +11,17 @@ export const Tools = styled.div`
 
 export const divButton = styled.div`
     margin: 0 0 0 2rem;
-     @media (max-width: 400px){
+
+
+    .ant-btn{
+        background-color: #70e000;
+        color: white;
+        border-radius: 6px;
+    }
+     /* @media (max-width: 500px){
         margin: 0;
 
-    }
+    } */
 `
 
 export const Button = styled.button`
@@ -25,9 +32,11 @@ export const Button = styled.button`
     color: white;
     cursor: pointer;
     transition: all 0.3s;
+    white-space: nowrap;
     &:hover {
         opacity: 0.7;
     }
+   
 `
 export const SearchContainer = styled.form`
     display: flex;
@@ -35,6 +44,9 @@ export const SearchContainer = styled.form`
     
     svg{
         width: 30px;
+    }
+     @media (max-width: 500px){
+        margin: 0 2rem 0 2rem ;
     }
 `
 

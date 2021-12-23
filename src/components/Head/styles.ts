@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { NavBar } from '.';
 
-export const Nav = styled.head`
+export const Nav = styled.header`
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
@@ -13,7 +13,8 @@ export const Nav = styled.head`
   top: 0;
   left: 0;
   right: 0;
-  height: 8vh;
+  height: auto;
+  border-bottom: 1px solid #F0F0F0;
   /* background: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(245,245,245,1) 52%, rgba(255,255,255,1) 100%); */
  
 `;

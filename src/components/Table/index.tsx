@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'antd';
+import { Button, Table } from 'antd';
 import 'antd/dist/antd.css';
 import * as S from './styles';
 import { Input, Space } from 'antd';
@@ -9,20 +9,20 @@ import { toast } from 'react-toastify';
 const columns = [
     {
         title: 'Nome',
-        dataIndex: 'descricao',
-        key: 'descricao',
+        dataIndex: 'titulo',
+        key: 'titulo',
     },
     {
         title: 'Autor',
-        dataIndex: 'titulo',
-        key: 'titulo',
+        dataIndex: 'author',
+        key: 'author',
     },
 
     {
         title: '',
-        dataIndex: 'linkYouTube',
-        key: 'linkYouTube',
-        render: (link) => <a href={link.linkYouTube}>Simular</a>,
+        dataIndex: 'id',
+        key: 'id',
+        render: (link) => <a href={link.id}>Simular</a>,
     },
 ];
 
@@ -70,9 +70,7 @@ export default function TableAnt() {
     return (<>
         <S.Tools>
             <S.divButton>
-                <S.Button >
-                    Criar Simulado
-                </S.Button >
+                <Button type="default">Criar Simulado</Button>
             </S.divButton>
             <S.SearchContainer>
                 <Space direction="vertical">

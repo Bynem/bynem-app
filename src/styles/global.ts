@@ -1,8 +1,19 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
-  html, body {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+  
+  body {
     font-family: 'Roboto', sans-serif;
+    height: 535px;
+   
+  #__next {
+    height: 535px;
+}
 }
 
 `

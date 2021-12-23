@@ -2,12 +2,11 @@ import styled from 'styled-components'
 
 export const Container = styled.main``
 
-export const Content = styled.main`
+export const Content = styled.div`
     display: flex !important;
     flex-direction: column !important;
     user-select: none;
     background-color: white !important;
-    height: 84vh !important;
 `
 
 export const Title = styled.p`
