@@ -23,7 +23,7 @@ export default function Home() {
     }
     const onSearch = value => console.log(value);
     return (
-        <>
+        <div>
             <S.Container>
                 <Head />
                 <S.Content>
@@ -43,8 +43,8 @@ export default function Home() {
                     </S.Tools>
                     <Table />
                 </S.Content>
-                <Footer />
             </S.Container>
-        </>
+            <Footer />
+        </div>
     )
 }
