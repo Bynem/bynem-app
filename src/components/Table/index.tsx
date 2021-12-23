@@ -8,18 +8,18 @@ import { toast } from 'react-toastify';
 
 const columns = [
     {
-        title: 'Descrição',
+        title: 'Nome',
         dataIndex: 'descricao',
         key: 'descricao',
     },
     {
-        title: 'Título',
+        title: 'Autor',
         dataIndex: 'titulo',
         key: 'titulo',
     },
 
     {
-        title: 'LinkYouTube',
+        title: '',
         dataIndex: 'linkYouTube',
         key: 'linkYouTube',
         render: (link) => <a href={link.linkYouTube}>Simular</a>,
