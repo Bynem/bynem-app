@@ -1,126 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
-import { DivTable } from './styles';
+import * as S from './styles';
+import { Input, Space } from 'antd';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const columns = [
     {
-        title: 'Nome',
-        dataIndex: 'name',
-        key: 'name',
+        title: 'Descrição',
+        dataIndex: 'descricao',
+        key: 'descricao',
     },
     {
-        title: 'Autor',
-        dataIndex: 'author',
-        key: 'author',
+        title: 'Título',
+        dataIndex: 'titulo',
+        key: 'titulo',
     },
 
     {
-        title: '',
-        dataIndex: 'simuled',
-        key: 'simuled',
-        render: (record) => <a href={record.simuled}>Simular</a>,
+        title: 'LinkYouTube',
+        dataIndex: 'linkYouTube',
+        key: 'linkYouTube',
+        render: (link) => <a href={link.linkYouTube}>Simular</a>,
     },
 ];
 
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        author: 32,
-        simuled: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        author: 42,
-        simuled: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        author: 32,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Joe Black',
-        author: 32,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '5',
-        name: 'Joe Black',
-        author: 32,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '6',
-        name: 'Joe Black',
-        author: 32,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '7',
-        name: 'Joe Black',
-        author: 32,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '8',
-        name: 'Joe Black',
-        author: 32,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '9',
-        name: 'Joe Black',
-        author: 32,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '10',
-        name: 'Joe Black',
-        author: 32,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '11',
-        name: 'Joe Black',
-        author: 99,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '12',
-        name: 'Joe Black',
-        author: 99,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '13',
-        name: 'Joe Black',
-        author: 99,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '14',
-        name: 'Joe Black',
-        author: 99,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '15',
-        name: 'Joe Black',
-        author: 99,
-        simuled: 'Sidney No. 1 Lake Park',
-    },
-];
+export type DataTable = {
+    descricao: string
+    id: number
+    linkYouTube: string
+    ordemDasPerguntas: number
+    titulo: string
+}
 
 export default function TableAnt() {
-    return (
-        <DivTable>
-            <Table pagination={{ pageSize: 8 }} loading={false} columns={columns} dataSource={data} />
-        </DivTable>
+    const [data, setData] = useState<DataTable[] | any>()
+    const [isLoading, setIsLoading] = useState(true)
+    const [params, setParams] = useState("")
+    const { Search } = Input;
 
+    const onSearch = value => { setParams(value) };
+
+    function onSearchEnter(e) {
+        e.preventDefault();
+        setIsLoading(true)
+        setParams(e.target.value)
+    }
+
+    useEffect(() => {
+        async function getSimuleds() {
+            await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
+                params: { filter: params }
+
+            })
+                .then(function (response) {
+                    console.log("response", response)
+                    setData(response.data);
+                    setIsLoading(false)
+                })
+                .catch(function (error) {
+                    toast.error("Um erro inesperado aconteceu")
+                    console.log(error);
+                });
+        }
+        getSimuleds()
+    }, [params])
+
+    return (<>
+        <S.Tools>
+            <S.divButton>
+                <S.Button >
+                    Criar Simulado
+                </S.Button >
+            </S.divButton>
+            <S.SearchContainer>
+                <Space direction="vertical">
+                    <Search placeholder="Pesquisar" onPressEnter={e => onSearchEnter(e)} onSearch={onSearch} enterButton />
+                </Space>
+            </S.SearchContainer>
+        </S.Tools>
+        <S.DivTable>
+            <Table pagination={{ pageSize: 8 }} loading={isLoading} columns={columns} dataSource={data} />
+        </S.DivTable>
+    </>
     )
 }

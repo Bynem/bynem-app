@@ -13,23 +13,21 @@ export const Nav = styled.head`
   top: 0;
   left: 0;
   right: 0;
-  /* background: rgb(221,221,221); */
-  background: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(245,245,245,1) 52%, rgba(255,255,255,1) 100%);
+  height: 8vh;
+  /* background: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(245,245,245,1) 52%, rgba(255,255,255,1) 100%); */
  
 `;
 
 export const Hamburger = styled.div`
-
   flex-direction: column;
   user-select: none;
   .spanHamburger{
     height: 2px;
     width: 25px;
-    background: #e611b6;
+    background:#E414B2;
     margin-bottom: 4px;
     border-radius: 5px;
   }
-
   @media (max-width: 768px) {
     display: flex;
   }
@@ -55,7 +53,7 @@ export const MenuLink = styled.a`
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  color: #e611b6;
+  color: #E414B2;
   transition: all 0.3s ease-in;
   font-size: 0.9rem;
 

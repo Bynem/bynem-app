@@ -8,6 +8,8 @@ import theme from '../styles/theme'
 import { ConfigProvider } from 'antd'
 import ptBR from 'antd/lib/locale/pt_BR'
 import 'antd/dist/antd.css'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -27,6 +29,17 @@ function App({ Component, pageProps }: AppProps) {
         <GlobalStyles />
         <AuthProvider>
           <Component {...pageProps} />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </AuthProvider>
       </ThemeProvider>
     </ConfigProvider>
