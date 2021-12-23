@@ -6,10 +6,10 @@ export type FooterProps = {
   bottom: boolean
 }
 
-export default function Footer() {
-
+export default function Footer({ bottom }: FooterProps) {
+  console.log("bottom", bottom)
   return (
-    <S.Footer >
+    <S.Footer bottom={bottom}>
       <Image src={"/bynem3.png"} width={180} height={18} />
     </S.Footer>
   )

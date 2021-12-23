@@ -33,8 +33,11 @@ export type DataTable = {
     ordemDasPerguntas: number
     titulo: string
 }
-
-export default function TableAnt() {
+export type Table = {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    setBottom: Function
+}
+export default function TableAnt({ setBottom }: Table) {
     const [data, setData] = useState<DataTable[] | any>()
     const [isLoading, setIsLoading] = useState(true)
     const [params, setParams] = useState("")
@@ -55,7 +58,11 @@ export default function TableAnt() {
 
             })
                 .then(function (response) {
-                    console.log("response", response)
+                    if (response.data.length === 0) {
+                        setBottom(true)
+                    } else {
+                        setBottom(false)
+                    }
                     setData(response.data);
                     setIsLoading(false)
                 })

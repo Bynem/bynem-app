@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from "../../components/Head"
 import Footer from "../../components/Footer"
 import * as S from './styles'
 import Table from '../../components/Table'
 
 export default function Home() {
+    const [bottom, setBottom] = useState(false)
 
     return (
         <>
@@ -12,9 +13,9 @@ export default function Home() {
             <S.Content>
                 <S.Title>Simulados</S.Title>
                 <S.SubTitle>Estude utilizando o sistema de simulados totalmente grátis</S.SubTitle>
-                <Table />
+                <Table setBottom={setBottom} />
             </S.Content>
-            <Footer />
+            <Footer bottom={bottom} />
         </>
     )
 }
