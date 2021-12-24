@@ -8,7 +8,13 @@ export type NavBar = {
   isOpen: boolean
 }
 
-export default function Head() {
+export type Home = {
+  home: boolean
+}
+
+export default function Head({ home }: Home) {
+  { console.log("home", home) }
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (<>
     <S.Nav>
@@ -21,9 +27,13 @@ export default function Head() {
         <span className='spanHamburger' />
       </S.Hamburger>
       <S.Menu isOpen={isOpen}>
-        <Link href="/2">
-          <S.MenuLink >Inicio</S.MenuLink>
-        </Link>
+        {home ?
+          (
+            <Link href="/2">
+              <S.MenuLink >Inicio</S.MenuLink>
+            </Link>
+          ) : (null)}
+
         <Link href="/2">
           <S.MenuLink >Blog</S.MenuLink>
         </Link>

@@ -18,13 +18,21 @@ const columns = [
         dataIndex: 'author',
         key: 'author',
     },
+    {
+        title: 'Autor',
+        dataIndex: 'author',
+        key: 'author',
+    },
 
     {
         title: '',
         dataIndex: 'id',
         key: 'id',
-        render: (link) => <a href={link.id}>Simular</a>,
+        width: '20%',
+        render: (link) => (<><Button type="primary">Editar</Button> <Button type="primary" danger>deletar</Button> </>)
     },
+
+
 ];
 
 export type DataTable = {
@@ -40,7 +48,7 @@ export type Table = {
 }
 
 
-export default function TableAnt({ setBottom }: Table) {
+export default function TableSimuled({ setBottom }: Table) {
     const [data, setData] = useState<DataTable[] | any>()
     const [isLoading, setIsLoading] = useState(true)
     const [params, setParams] = useState("")
@@ -78,11 +86,6 @@ export default function TableAnt({ setBottom }: Table) {
 
     return (<>
         <S.Tools>
-            <S.divButton>
-                <Link href="/criar-simulados">
-                    <Button type="default" >Criar Simulado</Button>
-                </Link>
-            </S.divButton>
             <S.SearchContainer>
                 <Space direction="vertical">
                     <Search placeholder="Pesquisar" onPressEnter={e => onSearchEnter(e)} onSearch={onSearch} enterButton />
@@ -90,7 +93,7 @@ export default function TableAnt({ setBottom }: Table) {
             </S.SearchContainer>
         </S.Tools>
         <S.DivTable>
-            <Table pagination={{ pageSize: 8 }} loading={isLoading} columns={columns} dataSource={data} />
+            <Table pagination={{ pageSize: 7 }} loading={isLoading} columns={columns} dataSource={data} scroll={{ y: 500 }} />
         </S.DivTable>
     </>
     )

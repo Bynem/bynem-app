@@ -5,11 +5,11 @@ import * as S from './styles'
 import FormCreatedSimuled from '../../components/FormCreatedSimuled'
 import { Divider } from 'antd';
 
-export default function RedirectCreateSimuled() {
+export default function CreateSimuled() {
 
     return (
         <>
-            <Head />
+            <Head home={true} />
             <S.Content>
                 <S.Title>Crie seu simulado</S.Title>
                 <Divider />
