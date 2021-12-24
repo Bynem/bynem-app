@@ -5,6 +5,7 @@ import * as S from './styles';
 import { Input, Space } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Link from 'next/link'
 
 const columns = [
     {
@@ -37,6 +38,8 @@ export type Table = {
     // eslint-disable-next-line @typescript-eslint/ban-types
     setBottom: Function
 }
+
+
 export default function TableAnt({ setBottom }: Table) {
     const [data, setData] = useState<DataTable[] | any>()
     const [isLoading, setIsLoading] = useState(true)
@@ -77,7 +80,9 @@ export default function TableAnt({ setBottom }: Table) {
     return (<>
         <S.Tools>
             <S.divButton>
-                <Button type="default">Criar Simulado</Button>
+                <Link href="/criar-simulados">
+                    <Button type="default" >Criar Simulado</Button>
+                </Link>
             </S.divButton>
             <S.SearchContainer>
                 <Space direction="vertical">
