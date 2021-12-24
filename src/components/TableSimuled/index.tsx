@@ -49,12 +49,14 @@ export default function TableSimuled({ setBottom }: Table) {
             dataIndex: 'id',
             key: 'id',
             width: '20%',
-            render: (link) => (
+            render: (link:any) => (
                 <>
+                {console.log('link', link)}
                     <Button
                         onClick={UpdateSimuled}
                         type="primary"
                         key={link.id}
+                        value={link.id}
                     >Editar
                     </Button>
                     <Button
@@ -62,6 +64,7 @@ export default function TableSimuled({ setBottom }: Table) {
                         type="primary"
                         danger
                         key={link.id}
+                        value={link.id}
                     >deletar
                     </Button>
                 </>
@@ -89,7 +92,7 @@ export default function TableSimuled({ setBottom }: Table) {
         //     .catch(function (error) {
         //         toast.error("Um erro inesperado aconteceu")
         //     });
-        console.log(e)
+        console.log('e', e)
     }
 
     function UpdateSimuled() {

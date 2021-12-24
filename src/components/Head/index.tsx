@@ -33,10 +33,10 @@ export default function Head({ home }: Home) {
             </Link>
           ) : (null)}
 
-        <Link href="/2">
+        <Link href="http://bynem.com.br/">
           <S.MenuLink >Blog</S.MenuLink>
         </Link>
-        <Link href="/2">
+        <Link href="/meus-simulados">
           <S.MenuLink >Meus Simulados</S.MenuLink>
         </Link>
       </S.Menu>

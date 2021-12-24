@@ -51,6 +51,6 @@ export const SearchContainer = styled.form`
 `
 
 export const DivTable = styled.div`
-    height: 557px;
+    height: 591px;
     margin: 0 2rem 0 2rem;
 `

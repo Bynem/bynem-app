@@ -11,13 +11,6 @@ export const Tools = styled.div`
 
 export const divButton = styled.div`
     margin: 0 0 0 2rem;
-
-
-    
-     /* @media (max-width: 500px){
-        margin: 0;
-
-    } */
 `
 
 export const Button = styled.button`
@@ -49,7 +42,6 @@ export const SearchContainer = styled.form`
 export const DivTable = styled.div`
     height: 640px;
     margin: 0 2rem 0 2rem;
-    /* overflow-y: auto; */
     .ant-btn{
         margin: 2px;
         border-radius: 4px;
