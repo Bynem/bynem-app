@@ -5,7 +5,6 @@ import * as S from './styles';
 import { Input, Space } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Link from 'next/link'
 
 const columns = [
     {

@@ -9,13 +9,13 @@ export default function MySimuleds() {
 
     return (
         <>
-            <Head home={false} />
+            <Head home={true} />
             <S.Content>
                 <S.Title>Meus simulados</S.Title>
                 <S.SubTitle>Edite ou exclua seus simulados</S.SubTitle>
                 <Table setBottom={setBottom} />
             </S.Content>
-            <Footer bottom={false} />
+            <Footer bottom={bottom} />
         </>
     )
 }

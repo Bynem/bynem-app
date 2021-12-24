@@ -90,7 +90,7 @@ export default function TableAnt({ setBottom }: Table) {
             </S.SearchContainer>
         </S.Tools>
         <S.DivTable>
-            <Table pagination={{ pageSize: 8 }} loading={isLoading} columns={columns} dataSource={data} />
+            <Table pagination={{ pageSize: 7 }} loading={isLoading} columns={columns} dataSource={data} />
         </S.DivTable>
     </>
     )

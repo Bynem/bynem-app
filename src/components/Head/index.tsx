@@ -13,9 +13,8 @@ export type Home = {
 }
 
 export default function Head({ home }: Home) {
-  { console.log("home", home) }
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (<>
     <S.Nav>
       <Link href="">
@@ -29,13 +28,16 @@ export default function Head({ home }: Home) {
       <S.Menu isOpen={isOpen}>
         {home ?
           (
-            <Link href="/2">
+            <Link href="/">
               <S.MenuLink >Inicio</S.MenuLink>
             </Link>
           ) : (null)}
 
         <Link href="/2">
           <S.MenuLink >Blog</S.MenuLink>
+        </Link>
+        <Link href="/2">
+          <S.MenuLink >Meus Simulados</S.MenuLink>
         </Link>
       </S.Menu>
     </S.Nav>
