@@ -60,7 +60,7 @@ export default function TableSimuled({ setBottom }: Table) {
                         onClick={() => DeleteSimulated(id)}
                         type="primary"
                         danger
-                    >deletar
+                    >Deletar
                     </Button>
                 </>
             )
