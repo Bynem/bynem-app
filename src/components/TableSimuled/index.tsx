@@ -5,34 +5,9 @@ import * as S from './styles';
 import { Input, Space } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
-const columns = [
-    {
-        title: 'Nome',
-        dataIndex: 'titulo',
-        key: 'titulo',
-    },
-    {
-        title: 'Autor',
-        dataIndex: 'author',
-        key: 'author',
-    },
-    {
-        title: 'Autor',
-        dataIndex: 'author',
-        key: 'author',
-    },
-
-    {
-        title: '',
-        dataIndex: 'id',
-        key: 'id',
-        width: '20%',
-        render: (link) => (<><Button type="primary">Editar</Button> <Button type="primary" danger>deletar</Button> </>)
-    },
+import { ColumnsType } from 'antd/lib/table';
 
 
-];
 
 export type DataTable = {
     descricao: string
@@ -52,8 +27,74 @@ export default function TableSimuled({ setBottom }: Table) {
     const [isLoading, setIsLoading] = useState(true)
     const [params, setParams] = useState("")
     const { Search } = Input;
+    const columns = [
+        {
+            title: 'Nome',
+            dataIndex: 'titulo',
+            key: 'titulo',
+        },
+        {
+            title: 'Autor',
+            dataIndex: 'author',
+            key: 'author',
+        },
+        {
+            title: 'Autor',
+            dataIndex: 'author',
+            key: 'author',
+        },
+
+        {
+            title: '',
+            dataIndex: 'id',
+            key: 'id',
+            width: '20%',
+            render: (link) => (
+                <>
+                    <Button
+                        onClick={UpdateSimuled}
+                        type="primary"
+                        key={link.id}
+                    >Editar
+                    </Button>
+                    <Button
+                        onClick={(e) => DeleteSimuled(e)}
+                        type="primary"
+                        danger
+                        key={link.id}
+                    >deletar
+                    </Button>
+                </>
+            )
+        },
+
+    ];
 
     const onSearch = value => { setParams(value) };
+
+    function DeleteSimuled(e) {
+        // await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
+        //     params: { filter: params }
+
+        // })
+        //     .then(function (response) {
+        //         if (response.data.length === 0) {
+        //             setBottom(true)
+        //         } else {
+        //             setBottom(false)
+        //         }
+        //         setData(response.data);
+        //         setIsLoading(false)
+        //     })
+        //     .catch(function (error) {
+        //         toast.error("Um erro inesperado aconteceu")
+        //     });
+        console.log(e)
+    }
+
+    function UpdateSimuled() {
+        return <></>
+    }
 
     function onSearchEnter(e) {
         e.preventDefault();
