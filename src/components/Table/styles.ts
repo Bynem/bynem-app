@@ -18,10 +18,6 @@ export const divButton = styled.div`
         color: white;
         border-radius: 6px;
     }
-     /* @media (max-width: 500px){
-        margin: 0;
-
-    } */
 `
 
 export const Button = styled.button`

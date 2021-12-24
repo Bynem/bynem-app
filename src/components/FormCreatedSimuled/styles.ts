@@ -8,4 +8,8 @@ export const SubTitle = styled.p`
 export const ContainerButton = styled.div`
     width: fit-content;
     margin-right: auto;
+     .ant-btn{
+        margin: 2px;
+        border-radius: 4px;
+    }
 `

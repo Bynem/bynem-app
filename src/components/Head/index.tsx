@@ -39,6 +39,9 @@ export default function Head({ home }: Home) {
         <Link href="/meus-simulados">
           <S.MenuLink >Meus Simulados</S.MenuLink>
         </Link>
+        <Link href="/criar-simulados">
+          <S.MenuLink >Criar Simulados</S.MenuLink>
+        </Link>
       </S.Menu>
     </S.Nav>
   </>

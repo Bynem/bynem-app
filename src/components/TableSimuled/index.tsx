@@ -5,9 +5,7 @@ import * as S from './styles';
 import { Input, Space } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { ColumnsType } from 'antd/lib/table';
-
-
+import { useRouter } from 'next/router'
 
 export type DataTable = {
     descricao: string
@@ -27,6 +25,8 @@ export default function TableSimuled({ setBottom }: Table) {
     const [isLoading, setIsLoading] = useState(true)
     const [params, setParams] = useState("")
     const { Search } = Input;
+    const router = useRouter()
+
     const columns = [
         {
             title: 'Nome',
@@ -49,22 +49,17 @@ export default function TableSimuled({ setBottom }: Table) {
             dataIndex: 'id',
             key: 'id',
             width: '20%',
-            render: (link:any) => (
+            render: (id: number) => (
                 <>
-                {console.log('link', link)}
                     <Button
-                        onClick={UpdateSimuled}
+                        onClick={() => UpdateSimulated(id)}
                         type="primary"
-                        key={link.id}
-                        value={link.id}
                     >Editar
                     </Button>
                     <Button
-                        onClick={(e) => DeleteSimuled(e)}
+                        onClick={() => DeleteSimulated(id)}
                         type="primary"
                         danger
-                        key={link.id}
-                        value={link.id}
                     >deletar
                     </Button>
                 </>
@@ -75,28 +70,25 @@ export default function TableSimuled({ setBottom }: Table) {
 
     const onSearch = value => { setParams(value) };
 
-    function DeleteSimuled(e) {
-        // await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
-        //     params: { filter: params }
-
-        // })
-        //     .then(function (response) {
-        //         if (response.data.length === 0) {
-        //             setBottom(true)
-        //         } else {
-        //             setBottom(false)
-        //         }
-        //         setData(response.data);
-        //         setIsLoading(false)
-        //     })
-        //     .catch(function (error) {
-        //         toast.error("Um erro inesperado aconteceu")
-        //     });
-        console.log('e', e)
+    async function DeleteSimulated(id) {
+        await axios.get(`https://bynem-app.herokuapp.com/api/Simulado/${id}`, {
+        })
+            .then(function (response) {
+                if (response.data.length === 0) {
+                    setBottom(true)
+                } else {
+                    setBottom(false)
+                }
+                setData(response.data);
+                setIsLoading(false)
+            })
+            .catch(function (error) {
+                toast.error("Um erro inesperado aconteceu")
+            });
     }
 
-    function UpdateSimuled() {
-        return <></>
+    function UpdateSimulated(id) {
+        router.push(`/simulado/${id}`)
     }
 
     function onSearchEnter(e) {
@@ -136,7 +128,7 @@ export default function TableSimuled({ setBottom }: Table) {
             </S.SearchContainer>
         </S.Tools>
         <S.DivTable>
-            <Table pagination={{ pageSize: 7 }} loading={isLoading} columns={columns} dataSource={data} scroll={{ y: 500 }} />
+            <Table pagination={{ pageSize: 6 }} loading={isLoading} columns={columns} dataSource={data} scroll={{ y: 430 }} />
         </S.DivTable>
     </>
     )

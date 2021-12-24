@@ -28,7 +28,6 @@ export const FormContainer = styled.div`
          max-width: 148px;
      }
      .ant-btn{
-        background-color: #70e000;
         color: white;
         border-radius: 3px;
         border: NONE;

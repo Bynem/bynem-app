@@ -78,6 +78,10 @@ export default function FormCreatedSimuled() {
             });
     }
 
+    function goTohome() {
+        router.push("/")
+    }
+
     return (
         <Spin indicator={antIcon} spinning={isSpinning}>
             <Form {...layout} name="nest-messages" labelAlign={"left"} onFinish={onFinish} validateMessages={validateMessages}>
@@ -123,8 +127,11 @@ export default function FormCreatedSimuled() {
                 <Divider style={{ borderTop: "2px solid rgba(0, 0, 0, 0.06)" }} />
                 <Form.Item>
                     <S.ContainerButton>
+                        <Button type="primary" danger onClick={goTohome} htmlType="submit">
+                            VOLTAR
+                        </Button>
                         <Button type="primary" htmlType="submit">
-                            Salvar
+                            SALVAR
                         </Button>
                     </S.ContainerButton>
                 </Form.Item>
