@@ -7,7 +7,7 @@ import { Divider } from 'antd';
 
 
 export type Id = {
-    id: number;
+    id: string | string[];
 }
 export default function UpdateSimulated({ id }: Id) {
 
