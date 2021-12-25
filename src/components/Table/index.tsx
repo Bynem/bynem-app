@@ -69,7 +69,7 @@ export default function TableAnt({ setBottom }: Table) {
                 setIsLoading(false)
             })
                 .catch(function (error) {
-                    toast.error("Um erro inesperado aconteceu")
+                    toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
                 });
         }
         getSimuleds()

@@ -24,7 +24,7 @@ export type Table = {
 
 export default function TableSimuled({ setBottom }: Table) {
     const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
-    const [data, setData] = useState<DataTable[] | any>()
+    const [data, setData] = useState<DataTable[]>()
     const [isSpinning, setIsSpinning] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [params, setParams] = useState("")
@@ -85,8 +85,8 @@ export default function TableSimuled({ setBottom }: Table) {
 
             })
             .catch(function (error) {
-                toast.error("Um erro inesperado aconteceu")
-                console.log(error);
+                toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
+
 
             });
     }
@@ -121,7 +121,7 @@ export default function TableSimuled({ setBottom }: Table) {
                 setIsLoading(false)
             })
             .catch(function (error) {
-                toast.error("Um erro inesperado aconteceu")
+                toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
             });
     }
     return (

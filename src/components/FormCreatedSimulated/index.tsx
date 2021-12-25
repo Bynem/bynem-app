@@ -72,8 +72,8 @@ export default function FormCreatedSimulated() {
             toast.success('Simulado salvo com sucesso ')
         })
             .catch(function (error) {
+                toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
                 setIsSpinning(false)
-                toast.error(error)
             });
     }
 

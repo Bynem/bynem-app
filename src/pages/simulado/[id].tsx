@@ -1,14 +1,10 @@
-import axios from 'axios';
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
-import { toast } from 'react-toastify';
-import Loading from '../../components/Loading';
 import UpdateSimulated from '../../templates/UpdateSimulated'
-import { FormCreatedSimulated } from '../../components/FormUpdateSimulated';
+import Loading from '../../components/Loading'
 
 export default function UpdateSimulatedPage() {
     const [loading, setLoading] = useState(false)
-    const [data, setData] = useState<FormCreatedSimulated | null>()
     const router = useRouter()
     const { id } = router.query
 
@@ -18,7 +14,7 @@ export default function UpdateSimulatedPage() {
             setLoading(false)
         }, 500)
 
-        
+
 
     }, [])
 
