@@ -11,7 +11,7 @@ export default function UpdateSimulated(data) {
         <>
             <Head home={true} />
             <S.Content>
-                <S.Title>Crie seu simulado</S.Title>
+                <S.Title>Altere seu simulado</S.Title>
                 <Divider />
                 <S.FormContainer>
                     {console.log("data no body ", data.data)}
