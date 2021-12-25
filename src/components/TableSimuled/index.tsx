@@ -6,6 +6,8 @@ import { Input, Space } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router'
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export type DataTable = {
     descricao: string
@@ -21,7 +23,9 @@ export type Table = {
 
 
 export default function TableSimuled({ setBottom }: Table) {
+    const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
     const [data, setData] = useState<DataTable[] | any>()
+    const [isSpinning, setIsSpinning] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [params, setParams] = useState("")
     const { Search } = Input;
@@ -71,19 +75,19 @@ export default function TableSimuled({ setBottom }: Table) {
     const onSearch = value => { setParams(value) };
 
     async function DeleteSimulated(id) {
-        await axios.get(`https://bynem-app.herokuapp.com/api/Simulado/${id}`, {
+        setIsSpinning(true)
+        await axios.delete(`https://bynem-app.herokuapp.com/api/Simulado/${id}`, {
         })
             .then(function (response) {
-                if (response.data.length === 0) {
-                    setBottom(true)
-                } else {
-                    setBottom(false)
-                }
-                setData(response.data);
-                setIsLoading(false)
+                setIsSpinning(false)
+                toast.success('Simulado Deletado com sucesso')
+                getSimuleds()
+
             })
             .catch(function (error) {
                 toast.error("Um erro inesperado aconteceu")
+                console.log(error);
+
             });
     }
 
@@ -98,38 +102,41 @@ export default function TableSimuled({ setBottom }: Table) {
     }
 
     useEffect(() => {
-        async function getSimuleds() {
-            await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
-                params: { filter: params }
 
-            })
-                .then(function (response) {
-                    if (response.data.length === 0) {
-                        setBottom(true)
-                    } else {
-                        setBottom(false)
-                    }
-                    setData(response.data);
-                    setIsLoading(false)
-                })
-                .catch(function (error) {
-                    toast.error("Um erro inesperado aconteceu")
-                });
-        }
         getSimuleds()
     }, [params])
 
-    return (<>
-        <S.Tools>
-            <S.SearchContainer>
-                <Space direction="vertical">
-                    <Search placeholder="Pesquisar" onPressEnter={e => onSearchEnter(e)} onSearch={onSearch} enterButton />
-                </Space>
-            </S.SearchContainer>
-        </S.Tools>
-        <S.DivTable>
-            <Table pagination={{ pageSize: 6 }} loading={isLoading} columns={columns} dataSource={data} scroll={{ y: 430 }} />
-        </S.DivTable>
-    </>
+    async function getSimuleds() {
+        await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
+            params: { filter: params }
+
+        })
+            .then(function (response) {
+                if (response.data.length === 0) {
+                    setBottom(true)
+                } else {
+                    setBottom(false)
+                }
+                setData(response.data);
+                setIsLoading(false)
+            })
+            .catch(function (error) {
+                toast.error("Um erro inesperado aconteceu")
+            });
+    }
+    return (
+        <Spin indicator={antIcon} spinning={isSpinning}>
+
+            <S.Tools>
+                <S.SearchContainer>
+                    <Space direction="vertical">
+                        <Search placeholder="Pesquisar" onPressEnter={e => onSearchEnter(e)} onSearch={onSearch} enterButton />
+                    </Space>
+                </S.SearchContainer>
+            </S.Tools>
+            <S.DivTable>
+                <Table pagination={{ pageSize: 6 }} loading={isLoading} columns={columns} dataSource={data} scroll={{ y: 430 }} />
+            </S.DivTable>
+        </Spin>
     )
 }

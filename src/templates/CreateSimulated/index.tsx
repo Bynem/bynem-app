@@ -2,10 +2,10 @@ import React from 'react';
 import Head from "../../components/Head"
 import Footer from "../../components/Footer"
 import * as S from './styles'
-import FormCreatedSimuled from '../../components/FormCreatedSimuled'
+import FormCreatedSimulated from '../../components/FormCreatedSimulated'
 import { Divider } from 'antd';
 
-export default function CreateSimuled() {
+export default function CreateSimulated() {
 
     return (
         <>
@@ -14,7 +14,7 @@ export default function CreateSimuled() {
                 <S.Title>Crie seu simulado</S.Title>
                 <Divider />
                 <S.FormContainer>
-                    <FormCreatedSimuled />
+                    <FormCreatedSimulated />
                 </S.FormContainer>
             </S.Content>
             <Footer bottom={false} />

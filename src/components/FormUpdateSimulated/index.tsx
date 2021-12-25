@@ -27,7 +27,7 @@ const validateMessages = {
     },
 };
 
-export type FormCreatedSimuled = {
+export type FormCreatedSimulated = {
     author: string
     descricao: string
     linkYouTube: string
@@ -35,7 +35,9 @@ export type FormCreatedSimuled = {
     ordemDasPerguntas: number
 }
 
-export default function FormCreatedSimuled() {
+export default function FormUpdateSimulated(simuled) {
+    { console.log("data no form", simuled.data) }
+
     const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
     const [ordemDasPerguntas, setOrdemDasPerguntas] = useState({ ordemDasPerguntas: 1 })
     const [isSpinning, setIsSpinning] = useState(false)
@@ -43,7 +45,7 @@ export default function FormCreatedSimuled() {
     const FakeUser = {
         author: 'Usuario'
     }
-    const [formSimuled, setFormSimuled] = useState<FormCreatedSimuled>({
+    const [formSimuled, setFormSimuled] = useState<FormCreatedSimulated>({
         author: FakeUser.author,
         descricao: "",
         linkYouTube: "",
@@ -52,62 +54,68 @@ export default function FormCreatedSimuled() {
     })
 
     const onFinish = (values) => {
+        { console.log("values", values) }
         setIsSpinning(true)
         const newObject = Object.assign(ordemDasPerguntas, values)
         setFormSimuled(newObject)
         postSimuled(newObject)
     };
 
+
+
     function orderQuestions(e) {
         setOrdemDasPerguntas({ ...ordemDasPerguntas, ordemDasPerguntas: e.target.value })
     }
 
     async function postSimuled(newObject) {
-        console.log("dentro do escopo ", newObject)
+        console.log("newObject", newObject)
+        if (newObject.titulo != undefined || newObject.descricao != undefined || newObject.linkYouTube != undefined) {
+            const id = { id: simuled.data.id }
+            const dataRequest = Object.assign(newObject, id)
+            console.log("dataRequest", dataRequest)
 
-        await axios.post('http://localhost:5000/api/Simulado', newObject, {
+            await axios.put('http://localhost:5000/api/Simulado', dataRequest, {
 
 
-        }).then(function (response) {
-            router.push('/')
-            toast.success('Simulado salvo com sucesso ')
-        })
-            .catch(function (error) {
-                setIsSpinning(false)
-                toast.error(error)
-            });
+            }).then(function (response) {
+                toast.success('Simulado salvo com sucesso ')
+            })
+                .catch(function (error) {
+                    setIsSpinning(false)
+                    toast.error(error)
+                });
+        }
+        router.push('/')
+        toast.success('Simulado salvo com sucesso ')
+        setIsSpinning(false)
+
+
     }
 
     function goTohome() {
         router.push("/")
     }
-
     return (
         <Spin indicator={antIcon} spinning={isSpinning}>
             <Form {...layout} name="nest-messages" labelAlign={"left"} onFinish={onFinish} validateMessages={validateMessages}>
                 <Form.Item
                     name='titulo'
+
+
                     label="Título"
                     rules={[
                         {
-                            required: true,
                             message: 'Insira seu titulo',
                         },
                     ]}
                 >
-                    <Input placeholder="Insira seu título" />
+                    <Input defaultValue={simuled.data?.titulo} placeholder="Insira seu título" />
                 </Form.Item>
                 <Form.Item
                     name='descricao'
                     label="Descriação"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Insira sua descriação',
-                        },
-                    ]}
                 >
-                    <Input.TextArea placeholder="Insira sua descriação" />
+                    <Input.TextArea defaultValue={simuled.data?.descricao} placeholder="Insira sua descriação" />
                 </Form.Item>
 
                 <Form.Item
@@ -115,10 +123,10 @@ export default function FormCreatedSimuled() {
                     label="Youtube Link"
 
                 >
-                    <Input addonBefore="youtube.com/" defaultValue="mysite" />
+                    <Input defaultValue={simuled.data?.linkYouTube} addonBefore="youtube.com/" />
                 </Form.Item>
                 <S.SubTitle>Ordem das perguntas</S.SubTitle>
-                <Radio.Group name="radiogroup" defaultValue={1} onChange={(e) => orderQuestions(e)}>
+                <Radio.Group name="radiogroup" defaultValue={simuled.data?.ordemDasPerguntas} onChange={(e) => orderQuestions(e)}>
                     <Space direction="vertical">
                         <Radio value={1}>Sequencial</Radio>
                         <Radio value={2}>Aleatória</Radio>

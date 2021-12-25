@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import CreateSimuled from '../templates/CreateSimuled'
+import CreateSimuled from '../templates/CreateSimulated'
 import Loading from '../components/Loading'
 
-export default function Home() {
+export default function CreateSimuledPage() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -11,8 +11,6 @@ export default function Home() {
             setLoading(false)
         }, 500)
     }, [])
-
-
 
     return <>
         {
