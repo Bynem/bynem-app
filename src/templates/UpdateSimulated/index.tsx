@@ -5,7 +5,7 @@ import * as S from './styles'
 import FormUpdateSimulated from '../../components/FormUpdateSimulated'
 import { Divider } from 'antd';
 
-export default function UpdateSimulated(data) {
+export default function UpdateSimulated(id) {
 
     return (
         <>
@@ -14,9 +14,9 @@ export default function UpdateSimulated(data) {
                 <S.Title>Altere seu simulado</S.Title>
                 <Divider />
                 <S.FormContainer>
-                    {console.log("data no body ", data.data)}
+                    {console.log("id no body ", id)}
 
-                    <FormUpdateSimulated data={data.data} />
+                    <FormUpdateSimulated data={id} />
                 </S.FormContainer>
             </S.Content>
             <Footer bottom={false} />

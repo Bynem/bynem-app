@@ -18,17 +18,7 @@ export default function UpdateSimulatedPage() {
             setLoading(false)
         }, 500)
 
-        async function getSimuledById() {
-            await axios.get(`https://bynem-app.herokuapp.com/api/Simulado/${id}`).then(function (response) {
-                setData(response.data)
-            })
-                .catch(function (error) {
-                    console.log(error.response)
-                    toast.error("Um erro inesperado aconteceu")
-
-                });
-        }
-        getSimuledById()
+        
 
     }, [])
 
@@ -40,8 +30,8 @@ export default function UpdateSimulatedPage() {
                     <Loading />
                 ) :
                 (<>
-                    {console.log("data no get", data)}
-                    <UpdateSimulated data={data} />
+                    {console.log("id no get", id)}
+                    <UpdateSimulated id={id} />
                 </>
                 )
         }

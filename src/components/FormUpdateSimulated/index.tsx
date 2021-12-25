@@ -35,8 +35,27 @@ export type FormCreatedSimulated = {
     ordemDasPerguntas: number
 }
 
-export default function FormUpdateSimulated(simuled) {
-    { console.log("data no form", simuled.data) }
+export type Simulated = {
+    data: FormCreatedSimulated
+}
+
+export default function FormUpdateSimulated(id) {
+
+    // async function getSimuledById() {
+    //     await axios.get(`https://bynem-app.herokuapp.com/api/Simulado/${id}`).then(function (response) {
+    //         setData(response.data)
+    //     })
+    //         .catch(function (error) {
+    //             console.log(error.response)
+    //             toast.error("Um erro inesperado aconteceu")
+
+    //         });
+    // }
+    // getSimuledById()
+
+    const [ simulated, setSimulated] = useState<Simulated | mull>()
+
+    { console.log("id no form", id) }
 
     const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
     const [ordemDasPerguntas, setOrdemDasPerguntas] = useState({ ordemDasPerguntas: 1 })
@@ -67,26 +86,26 @@ export default function FormUpdateSimulated(simuled) {
         setOrdemDasPerguntas({ ...ordemDasPerguntas, ordemDasPerguntas: e.target.value })
     }
 
-    async function postSimuled(newObject) {
-        console.log("newObject", newObject)
-        if (newObject.titulo != undefined || newObject.descricao != undefined || newObject.linkYoutube != undefined) {
-            const id = { id: simuled.data.id }
-            const dataRequest = Object.assign(newObject, id)
-            console.log("dataRequest", dataRequest)
+    // async function postSimuled(newObject) {
+    //     console.log("newObject", newObject)
+    //     if (newObject.titulo != undefined || newObject.descricao != undefined || newObject.linkYoutube != undefined) {
+    //         const id = { id: simulated.data.id }
+    //         const dataRequest = Object.assign(newObject, id)
+    //         console.log("dataRequest", dataRequest)
 
-            await axios.put('https://bynem-app.herokuapp.com/api/Simulado', dataRequest)
-                .then(function (response) {
-                    toast.success('Simulado salvo com sucesso ')
-                }).catch(function (error) {
-                    setIsSpinning(false)
-                    toast.error(error)
-                });
-        }
+    //         await axios.put('https://bynem-app.herokuapp.com/api/Simulado', dataRequest)
+    //             .then(function (response) {
+    //                 toast.success('Simulado salvo com sucesso ')
+    //             }).catch(function (error) {
+    //                 setIsSpinning(false)
+    //                 toast.error(error)
+    //             });
+    //     }
 
-        goTohome()
-        toast.success('Simulado salvo com sucesso ')
-        setIsSpinning(false)
-    }
+    //     goTohome()
+    //     toast.success('Simulado salvo com sucesso ')
+    //     setIsSpinning(false)
+    // }
 
     function goTohome() {
         router.push("/")
@@ -98,7 +117,17 @@ export default function FormUpdateSimulated(simuled) {
 
     return (
         <Spin indicator={antIcon} spinning={isSpinning}>
-            <Form {...layout} name="nest-messages" labelAlign={"left"} onFinish={onFinish} validateMessages={validateMessages}>
+            <Form 
+                {...layout} 
+                name="nest-messages" 
+                labelAlign={"left"} 
+                onFinish={onFinish} 
+                initialValues={{
+                    titulo: simulated.data?.titulo, 
+                    descricao: simulated.data?.descricao, 
+                    linkYoutube: simulated.data?.linkYoutube
+                    }} 
+                validateMessages={validateMessages}>
                 <Form.Item
                     name='titulo'
 
@@ -110,13 +139,13 @@ export default function FormUpdateSimulated(simuled) {
                         },
                     ]}
                 >
-                    <Input defaultValue={simuled.data?.titulo} placeholder="Insira seu título" />
+                    <Input placeholder="Insira seu título" />
                 </Form.Item>
                 <Form.Item
                     name='descricao'
                     label="Descriação"
                 >
-                    <Input.TextArea defaultValue={simuled.data?.descricao} placeholder="Insira sua descriação" />
+                    <Input.TextArea placeholder="Insira sua descriação" />
                 </Form.Item>
 
                 <Form.Item
@@ -124,10 +153,10 @@ export default function FormUpdateSimulated(simuled) {
                     label="Youtube Link"
 
                 >
-                    <Input defaultValue={simuled.data?.linkYouTube} addonBefore="youtube.com/" />
+                    <Input addonBefore="youtube.com/" />
                 </Form.Item>
                 <S.SubTitle>Ordem das perguntas</S.SubTitle>
-                <Radio.Group name="radiogroup" defaultValue={simuled.data?.ordemDasPerguntas} onChange={(e) => orderQuestions(e)}>
+                <Radio.Group name="radiogroup" defaultValue={simulated.data?.ordemDasPerguntas } onChange={(e) => orderQuestions(e)}>
                     <Space direction="vertical">
                         <Radio value={1}>Sequencial</Radio>
                         <Radio value={2}>Aleatória</Radio>
