@@ -64,7 +64,7 @@ export default function FormCreatedSimulated() {
 
     async function postSimuled(newObject) {
 
-        await axios.post('http://localhost:5000/api/Simulado', newObject, {
+        await axios.post('https://bynem-app.herokuapp.com/api/Simulado', newObject, {
 
 
         }).then(function (response) {

@@ -40,8 +40,8 @@ export const SearchContainer = styled.form`
 `
 
 export const DivTable = styled.div`
-        height: 559px;
-    margin: 0 2rem 0 2rem;
+        height: 600px;
+        margin: 0 2rem 0 2rem;
     .ant-btn{
         margin: 2px;
         border-radius: 4px;

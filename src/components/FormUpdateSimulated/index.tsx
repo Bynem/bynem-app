@@ -74,13 +74,13 @@ export default function FormUpdateSimulated(simuled) {
             const dataRequest = Object.assign(newObject, id)
             console.log("dataRequest", dataRequest)
 
-            await axios.put('http://localhost:5000/api/Simulado', dataRequest)
-            .then(function (response) {
-                toast.success('Simulado salvo com sucesso ')
-            }).catch(function (error) {
-                setIsSpinning(false)
-                toast.error(error)
-            });
+            await axios.put('https://bynem-app.herokuapp.com/api/Simulado', dataRequest)
+                .then(function (response) {
+                    toast.success('Simulado salvo com sucesso ')
+                }).catch(function (error) {
+                    setIsSpinning(false)
+                    toast.error(error)
+                });
         }
 
         goTohome()
@@ -90,6 +90,10 @@ export default function FormUpdateSimulated(simuled) {
 
     function goTohome() {
         router.push("/")
+    }
+
+    function goToMySimuleds() {
+        router.push("/meus-simulados")
     }
 
     return (
@@ -132,7 +136,7 @@ export default function FormUpdateSimulated(simuled) {
                 <Divider style={{ borderTop: "2px solid rgba(0, 0, 0, 0.06)" }} />
                 <Form.Item>
                     <S.ContainerButton>
-                        <Button type="primary" danger onClick={goTohome} htmlType="submit">
+                        <Button type="primary" danger onClick={goToMySimuleds} htmlType="submit">
                             VOLTAR
                         </Button>
                         <Button type="primary" htmlType="submit">
