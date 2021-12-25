@@ -56,7 +56,7 @@ export default function TableAnt({ setBottom }: Table) {
 
     useEffect(() => {
         async function getSimuleds() {
-            await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
+            await axios.get('http://localhost:5000/api/Simulado', {
                 params: { filter: params }
 
             }).then(function (response) {

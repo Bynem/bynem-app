@@ -69,32 +69,29 @@ export default function FormUpdateSimulated(simuled) {
 
     async function postSimuled(newObject) {
         console.log("newObject", newObject)
-        if (newObject.titulo != undefined || newObject.descricao != undefined || newObject.linkYouTube != undefined) {
+        if (newObject.titulo != undefined || newObject.descricao != undefined || newObject.linkYoutube != undefined) {
             const id = { id: simuled.data.id }
             const dataRequest = Object.assign(newObject, id)
             console.log("dataRequest", dataRequest)
 
-            await axios.put('http://localhost:5000/api/Simulado', dataRequest, {
-
-
-            }).then(function (response) {
+            await axios.put('http://localhost:5000/api/Simulado', dataRequest)
+            .then(function (response) {
                 toast.success('Simulado salvo com sucesso ')
-            })
-                .catch(function (error) {
-                    setIsSpinning(false)
-                    toast.error(error)
-                });
+            }).catch(function (error) {
+                setIsSpinning(false)
+                toast.error(error)
+            });
         }
-        router.push('/')
+
+        goTohome()
         toast.success('Simulado salvo com sucesso ')
         setIsSpinning(false)
-
-
     }
 
     function goTohome() {
         router.push("/")
     }
+
     return (
         <Spin indicator={antIcon} spinning={isSpinning}>
             <Form {...layout} name="nest-messages" labelAlign={"left"} onFinish={onFinish} validateMessages={validateMessages}>
