@@ -51,7 +51,8 @@ export default function FormCreatedSimulated() {
     const [timeSimulated, setTimeSimulated] = useState<boolean>(false)
     const [youtubeOrThumbnailSelected, setYoutubeOrThumbnailSelected] = useState("")
     const [OrderQuestionsSelected, setOrderQuestionsSelected] = useState<number>(0)
-    const [hoursMultipled, setHoursMultipled] = useState<string | null>(null)
+    const [limitedQuestions, setLimitedQuestions] = useState<boolean>(false)
+    const [limitedQuestionsAleatory, setLimitedQuestionsAleatory] = useState<boolean>(false)
 
     const router = useRouter()
     // const FakeUser = {
@@ -109,23 +110,7 @@ export default function FormCreatedSimulated() {
     }
 
     function onChange(time, timeString) {
-        const re = /\s*:\s*/;
-
-        const intermediario = timeString.split(re)
-
-        const fakePerguntas = 10
-
-        const segundos = (parseInt(intermediario[1]) * 60) + parseInt(intermediario[2])
-
-        const tempoTotalM = segundos * fakePerguntas
-
-        const segundosF = tempoTotalM % 60
-
-        const minutosF = parseInt((tempoTotalM / 60) % 60)
-
-        const horasf = parseInt((tempoTotalM / 60) / 60)
-
-        setHoursMultipled(`${horasf}:${minutosF}:${segundosF}`)
+        console.log(time, timeString);
     }
 
     return (
@@ -196,31 +181,49 @@ export default function FormCreatedSimulated() {
                         <Radio value={1}>Sequencial</Radio>
                         {OrderQuestionsSelected == 1 ?
                             (
-                                <Form.Item
-                                    name='sequencial'
-                                    label="Quantidade de Perguntas"
-                                >
-                                    <InputNumber min={0} />
+                                <Form.Item name="switchQuestions" label="Limite de perguntas?" valuePropName="checked">
+                                    <Switch onChange={e => setLimitedQuestions(e)} />
                                 </Form.Item>
                             ) :
                             (
                                 null
                             )
                         }
+                        {limitedQuestions ?
+                            (
+                                <Form.Item
+                                    name='sequencial'
+                                    label="Limite de Perguntas"
+                                >
+                                    <InputNumber min={0} />
+                                </Form.Item>
+                            ) :
+                            (
+                                null
+                            )}
                         <Radio value={2}>Aleatória</Radio>
                         {OrderQuestionsSelected == 2 ?
                             (
-                                <Form.Item
-                                    name='aleatoria'
-                                    label="Quantidade de Perguntas Por Simulado"
-                                >
-                                    <InputNumber min={0} />
+                                <Form.Item name="switchQuestions" label="Limite de perguntas?" valuePropName="checked">
+                                    <Switch onChange={e => setLimitedQuestionsAleatory(e)} />
                                 </Form.Item>
                             ) :
                             (
                                 null
                             )
                         }
+                        {limitedQuestionsAleatory ?
+                            (
+                                <Form.Item
+                                    name='aleatoria'
+                                    label="Limite de Perguntas Por Simulado"
+                                >
+                                    <InputNumber min={0} />
+                                </Form.Item>
+                            ) :
+                            (
+                                null
+                            )}
                     </Space>
                 </Radio.Group>
                 <br />
@@ -234,19 +237,6 @@ export default function FormCreatedSimulated() {
                 {timeSimulated ?
                     (<>
                         <Form.Item
-                            name="tempoPorPergunta"
-                            label="Tempo por pergunta"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Insira seu Tempo',
-                                },
-                            ]}
-                        >
-
-                            <TimePicker onChange={onChange} defaultOpenValue={moment('00:00:00', 'HHmmss')} />
-                        </Form.Item>
-                        <Form.Item
                             name="tempoPorProva"
                             label="Tempo por prova"
                             rules={[
@@ -255,8 +245,7 @@ export default function FormCreatedSimulated() {
                                 },
                             ]}
                         >
-                            {console.log("hoursMultiple", hoursMultipled)}
-                            {hoursMultipled ? <TimePicker value={moment(`${hoursMultipled}`, 'HH:mm:ss')} /> : <TimePicker defaultOpenValue={moment('00:00:00', 'HHmmss')} />}
+                            <TimePicker onChange={onChange} />
                         </Form.Item>
                     </>
                     ) :
