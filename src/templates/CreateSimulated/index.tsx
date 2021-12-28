@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from "../../components/Head"
-import Footer from "../../components/Footer"
+// import Footer from "../../components/Footer"
 import * as S from './styles'
 import FormCreatedSimulated from '../../components/FormCreatedSimulated'
 import { Divider } from 'antd';
@@ -17,7 +17,7 @@ export default function CreateSimulated() {
                     <FormCreatedSimulated />
                 </S.FormContainer>
             </S.Content>
-            <Footer bottom={false} />
+            {/* <Footer bottom={false} /> */}
         </>
     )
 }

@@ -12,4 +12,19 @@ export const ContainerButton = styled.div`
         margin: 2px;
         border-radius: 4px;
     }
+    .labelYoutube{
+        padding: 0 21px 0 22px;
+    }
 `
+export const Or = styled.div`
+    font-size: 1rem;
+    margin: 0 4px 0 4px;
+    width: fit-content;
+    display: inline-block;
+    @media (max-width:436px){
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+`
+

@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Form, Input, Button, Radio, Space, Divider } from 'antd';
+import { Form, Input, Button, Radio, Space, Divider, Upload, InputNumber, Switch, TimePicker } from 'antd';
 import * as S from './styles'
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify';
+import { UploadOutlined } from '@ant-design/icons'
+import moment from 'moment';
 
 const layout = {
     labelCol: {
@@ -30,35 +32,54 @@ const validateMessages = {
 export type FormCreatedSimuled = {
     author: string
     descricao: string
-    linkYouTube: string
+    linkYouTube?: string
+    thumbnail?: string
     titulo: string
     ordemDasPerguntas: number
+    aleatoria?: number
+    sequencial?: number
+    tempo: boolean
+    tempoPorProva: string
+    tempoPorPergunta: string
 }
+
 
 export default function FormCreatedSimulated() {
     const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
-    const [ordemDasPerguntas, setOrdemDasPerguntas] = useState({ ordemDasPerguntas: 1 })
-    const [isSpinning, setIsSpinning] = useState(false)
+    const [ordemDasPerguntas, setOrdemDasPerguntas] = useState({ ordemDasPerguntas: 0 })
+    const [isSpinning, setIsSpinning] = useState<boolean>(false)
+    const [timeSimulated, setTimeSimulated] = useState<boolean>(false)
+    const [youtubeOrThumbnailSelected, setYoutubeOrThumbnailSelected] = useState("")
+    const [OrderQuestionsSelected, setOrderQuestionsSelected] = useState<number>(0)
+    const [hoursMultipled, setHoursMultipled] = useState<string | null>(null)
+
     const router = useRouter()
-    const FakeUser = {
-        author: 'Usuario'
+    // const FakeUser = {
+    //     author: 'Usuario'
+    // }
+    // const [formSimuled, setFormSimuled] = useState<FormCreatedSimuled>({
+    //     author: FakeUser.author,
+    //     descricao: "",
+    //     linkYouTube: "",
+    //     titulo: "",
+    //     ordemDasPerguntas: 1
+    // })
+
+    function goTohome() {
+        router.push("/")
     }
-    const [formSimuled, setFormSimuled] = useState<FormCreatedSimuled>({
-        author: FakeUser.author,
-        descricao: "",
-        linkYouTube: "",
-        titulo: "",
-        ordemDasPerguntas: 1
-    })
 
     const onFinish = (values) => {
+        console.log("newObject", values)
         setIsSpinning(true)
         const newObject = Object.assign(ordemDasPerguntas, values)
-        setFormSimuled(newObject)
-        postSimuled(newObject)
+        console.log("newObject", newObject)
+        // setFormSimuled(newObject)
+        // postSimuled(newObject)
     };
 
     function orderQuestions(e) {
+        setOrderQuestionsSelected(e.target.value)
         setOrdemDasPerguntas({ ...ordemDasPerguntas, ordemDasPerguntas: e.target.value })
     }
 
@@ -66,19 +87,45 @@ export default function FormCreatedSimulated() {
 
         await axios.post('https://bynem-app.herokuapp.com/api/Simulado', newObject, {
 
-
-        }).then(function (response) {
+        }).then(function () {
             router.push('/')
             toast.success('Simulado salvo com sucesso ')
-        })
-            .catch(function (error) {
-                toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
-                setIsSpinning(false)
-            });
+        }).catch(function (error) {
+            toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
+            setIsSpinning(false)
+        });
     }
 
-    function goTohome() {
-        router.push("/")
+    const normFile = (e) => {
+        console.log('Upload event:', e);
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e && e.fileList;
+    };
+
+    function youtubeOrThumbnail(e) {
+        setYoutubeOrThumbnailSelected(e.target.value)
+    }
+
+    function onChange(time, timeString) {
+        const re = /\s*:\s*/;
+
+        const intermediario = timeString.split(re)
+
+        const fakePerguntas = 10
+
+        const segundos = (parseInt(intermediario[1]) * 60) + parseInt(intermediario[2])
+
+        const tempoTotalM = segundos * fakePerguntas
+
+        const segundosF = tempoTotalM % 60
+
+        const minutosF = parseInt((tempoTotalM / 60) % 60)
+
+        const horasf = parseInt((tempoTotalM / 60) / 60)
+
+        setHoursMultipled(`${horasf}:${minutosF}:${segundosF}`)
     }
 
     return (
@@ -109,20 +156,118 @@ export default function FormCreatedSimulated() {
                     <Input.TextArea placeholder="Insira sua descriação" />
                 </Form.Item>
 
-                <Form.Item
-                    name='linkYoutube'
-                    label="Youtube Link"
 
+                <Form.Item
+                    name="radio-button"
+                    label="Thumbnail Simulado"
+                    rules={[{ required: true, message: 'Please pick an item!' }]}
                 >
-                    <Input addonBefore="youtube.com/" defaultValue="mysite" />
+                    <Radio.Group onChange={e => youtubeOrThumbnail(e)}>
+                        <Radio.Button value="a">Upload Thumbnail</Radio.Button> <S.Or>Ou</S.Or>
+                        <Radio.Button value="b" style={{ padding: "0 21px 0 22px", marginTop: "4px" }}>Link Do Youtube</Radio.Button>
+                    </Radio.Group>
                 </Form.Item>
+                {youtubeOrThumbnailSelected == "a" ?
+                    (
+                        <Form.Item
+                            name="upload"
+                            label="Upload"
+                            valuePropName="fileList"
+                            getValueFromEvent={normFile}
+                        >
+                            <Upload name="logo" action="/upload.do" listType="picture">
+                                <Button style={{ color: '#000000D9', border: '1px solid #d9d9d9' }} icon={<UploadOutlined />}>Click to upload</Button>
+                            </Upload>
+                        </Form.Item>
+                    ) : youtubeOrThumbnailSelected == "b" ?
+                        (
+                            <Form.Item
+                                name='linkYoutube'
+                                label="Youtube Link"
+
+                            >
+                                <Input addonBefore="youtube.com/" defaultValue="mysite" />
+                            </Form.Item>
+                        ) : (null)
+                }
                 <S.SubTitle>Ordem das perguntas</S.SubTitle>
-                <Radio.Group name="radiogroup" defaultValue={1} onChange={(e) => orderQuestions(e)}>
+                <Radio.Group name="radiogroup" onChange={(e) => orderQuestions(e)}>
                     <Space direction="vertical">
                         <Radio value={1}>Sequencial</Radio>
+                        {OrderQuestionsSelected == 1 ?
+                            (
+                                <Form.Item
+                                    name='sequencial'
+                                    label="Quantidade de Perguntas"
+                                >
+                                    <InputNumber min={0} />
+                                </Form.Item>
+                            ) :
+                            (
+                                null
+                            )
+                        }
                         <Radio value={2}>Aleatória</Radio>
+                        {OrderQuestionsSelected == 2 ?
+                            (
+                                <Form.Item
+                                    name='aleatoria'
+                                    label="Quantidade de Perguntas Por Simulado"
+                                >
+                                    <InputNumber min={0} />
+                                </Form.Item>
+                            ) :
+                            (
+                                null
+                            )
+                        }
                     </Space>
                 </Radio.Group>
+                <br />
+                <br />
+
+                {/* ///time// */}
+
+                <Form.Item name="switch" label="Tempo no simulado" valuePropName="checked">
+                    <Switch onChange={e => setTimeSimulated(e)} />
+                </Form.Item>
+                {timeSimulated ?
+                    (<>
+                        <Form.Item
+                            name="tempoPorPergunta"
+                            label="Tempo por pergunta"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Insira seu Tempo',
+                                },
+                            ]}
+                        >
+
+                            <TimePicker onChange={onChange} defaultOpenValue={moment('00:00:00', 'HHmmss')} />
+                        </Form.Item>
+                        <Form.Item
+                            name="tempoPorProva"
+                            label="Tempo por prova"
+                            rules={[
+                                {
+                                    message: 'Insira seu Tempo',
+                                },
+                            ]}
+                        >
+                            {console.log("hoursMultiple", hoursMultipled)}
+                            {hoursMultipled ? <TimePicker value={moment(`${hoursMultipled}`, 'HH:mm:ss')} /> : <TimePicker defaultOpenValue={moment('00:00:00', 'HHmmss')} />}
+                        </Form.Item>
+                    </>
+                    ) :
+                    (
+                        null
+                    )}
+
+
+
+
+
                 <Divider style={{ borderTop: "2px solid rgba(0, 0, 0, 0.06)" }} />
                 <Form.Item>
                     <S.ContainerButton>

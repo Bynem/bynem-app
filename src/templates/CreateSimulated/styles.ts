@@ -25,7 +25,8 @@ export const FormContainer = styled.div`
      width: 90%;
      padding: 2rem;
      .ant-form-horizontal .ant-form-item-label{
-         max-width: 148px;
+         max-width: 270px;
+         min-width: 270px;
      }
      .ant-btn{
         color: white;
