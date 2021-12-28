@@ -51,8 +51,7 @@ export default function FormCreatedSimulated() {
     const [timeSimulated, setTimeSimulated] = useState<boolean>(false)
     const [youtubeOrThumbnailSelected, setYoutubeOrThumbnailSelected] = useState("")
     const [OrderQuestionsSelected, setOrderQuestionsSelected] = useState<number>(0)
-    const [limitedQuestions, setLimitedQuestions] = useState<boolean>(false)
-    const [limitedQuestionsAleatory, setLimitedQuestionsAleatory] = useState<boolean>(false)
+    const [hoursMultipled, setHoursMultipled] = useState<string | null>(null)
 
     const router = useRouter()
     // const FakeUser = {
@@ -181,77 +180,44 @@ export default function FormCreatedSimulated() {
                         <Radio value={1}>Sequencial</Radio>
                         {OrderQuestionsSelected == 1 ?
                             (
-                                <Form.Item name="switchQuestions" label="Limite de perguntas?" valuePropName="checked">
-                                    <Switch onChange={e => setLimitedQuestions(e)} />
-                                </Form.Item>
-                            ) :
-                            (
-                                null
-                            )
-                        }
-                        {limitedQuestions ?
-                            (
                                 <Form.Item
                                     name='sequencial'
-                                    label="Limite de Perguntas"
+                                    label="Quantidade de Perguntas"
                                 >
                                     <InputNumber min={0} />
                                 </Form.Item>
                             ) :
                             (
                                 null
-                            )}
+                            )
+                        }
                         <Radio value={2}>Aleatória</Radio>
                         {OrderQuestionsSelected == 2 ?
                             (
-                                <Form.Item name="switchQuestions" label="Limite de perguntas?" valuePropName="checked">
-                                    <Switch onChange={e => setLimitedQuestionsAleatory(e)} />
-                                </Form.Item>
-                            ) :
-                            (
-                                null
-                            )
-                        }
-                        {limitedQuestionsAleatory ?
-                            (
                                 <Form.Item
                                     name='aleatoria'
-                                    label="Limite de Perguntas Por Simulado"
+                                    label="Quantidade de Perguntas Por Simulado"
                                 >
                                     <InputNumber min={0} />
                                 </Form.Item>
                             ) :
                             (
                                 null
-                            )}
+                            )
+                        }
                     </Space>
                 </Radio.Group>
-                <br />
-                <br />
-
-                {/* ///time// */}
-
-                <Form.Item name="switch" label="Tempo no simulado" valuePropName="checked">
-                    <Switch onChange={e => setTimeSimulated(e)} />
+                <Form.Item
+                    name="tempoPorProva"
+                    label="Tempo por prova"
+                    rules={[
+                        {
+                            message: 'Insira seu Tempo',
+                        },
+                    ]}
+                >
+                    <TimePicker onChange={onChange} />
                 </Form.Item>
-                {timeSimulated ?
-                    (<>
-                        <Form.Item
-                            name="tempoPorProva"
-                            label="Tempo por prova"
-                            rules={[
-                                {
-                                    message: 'Insira seu Tempo',
-                                },
-                            ]}
-                        >
-                            <TimePicker onChange={onChange} />
-                        </Form.Item>
-                    </>
-                    ) :
-                    (
-                        null
-                    )}
 
 
 
