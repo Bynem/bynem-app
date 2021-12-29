@@ -78,9 +78,9 @@ export default function TableSimuled({ setBottom }: Table) {
         setIsSpinning(true)
         await axios.delete(`https://bynem-app.herokuapp.com/api/Simulado/${id}`, {
         })
-            .then(function (response) {
+            .then(function () {
                 setIsSpinning(false)
-                toast.success('Simulado Deletado com sucesso')
+                toast.success('Simulado Deletado com sucesso ')
                 getSimuleds()
 
             })

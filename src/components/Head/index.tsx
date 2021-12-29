@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Image from 'next/image'
 import Link from 'next/link'
 import * as S from './styles'
-import { Divider } from "antd";
 
 export type NavBar = {
   isOpen: boolean
@@ -17,9 +16,11 @@ export default function Head({ home }: Home) {
 
   return (<>
     <S.Nav>
-      <Link href="">
-        <Image height={70} width={170} src='/bynem01.png' />
-      </Link>
+      <div style={{ cursor: "pointer" }}>
+        <Link href="/" >
+          <Image height={70} width={170} src='/bynem01.png' />
+        </Link>
+      </div>
       <S.Hamburger onClick={() => setIsOpen(!isOpen)}>
         <span className='spanHamburger' />
         <span className='spanHamburger' />

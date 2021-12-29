@@ -18,7 +18,7 @@ export const ContainerButton = styled.div`
 `
 export const Or = styled.div`
     font-size: 1rem;
-    margin: 0 4px 0 4px;
+    margin: 0 8px 0 8px;
     width: fit-content;
     display: inline-block;
     @media (max-width:436px){

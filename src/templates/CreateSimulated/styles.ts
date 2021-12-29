@@ -8,6 +8,7 @@ export const Content = styled.div`
     user-select: none;
     background-color: white !important;
     height: 855px;
+    overflow-X: hidden;
 `
 
 export const Title = styled.p`
@@ -31,7 +32,7 @@ export const FormContainer = styled.div`
      .ant-btn{
         color: white;
         border-radius: 3px;
-        border: NONE;
+        border: none;
     }
    .nest-messages_linkYoutube{
         position: relative;

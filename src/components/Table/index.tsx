@@ -41,7 +41,7 @@ export type Table = {
 
 
 export default function TableAnt({ setBottom }: Table) {
-    const [data, setData] = useState<DataTable[] | any>()
+    const [data, setData] = useState<DataTable[] | null>(null)
     const [isLoading, setIsLoading] = useState(true)
     const [params, setParams] = useState("")
     const { Search } = Input;

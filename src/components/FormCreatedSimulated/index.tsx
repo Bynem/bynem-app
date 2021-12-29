@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Form, Input, Button, Radio, Space, Divider, Upload, InputNumber, Switch, TimePicker } from 'antd';
+import { Form, Input, Button, Radio, Space, Divider, Upload, InputNumber, TimePicker } from 'antd';
 import * as S from './styles'
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify';
 import { UploadOutlined } from '@ant-design/icons'
-import moment from 'moment';
 
 const layout = {
     labelCol: {
@@ -30,29 +29,34 @@ const validateMessages = {
 };
 
 export type FormCreatedSimuled = {
-    author: string
+    titulo: string
     descricao: string
     linkYouTube?: string
     thumbnail?: string
-    titulo: string
-    ordemDasPerguntas: number
-    aleatoria?: number
-    sequencial?: number
+    sequencial: number
+    aleatoria: number
     tempo: boolean
     tempoPorProva: string
-    tempoPorPergunta: string
 }
 
+export type Time = {
+    tempoPorProva: string
+}
+// titulo: "titulo"
+// descricao: "descrição"
+// thumbnail: [{… }]
+// youtubeOuThumbnail: "thumbnail"
+// aleatoria: 12
+// tempoPorProva: Moment { _isAMomentObject: true, _isUTC: false, _pf: {… }, _locale: Locale, _d: Tue Dec 28 2021 01: 00: 00 GMT - 0300(Horário Padrão de Brasília), … }
+// [[Prototype]]: Object
 
 export default function FormCreatedSimulated() {
     const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
     const [ordemDasPerguntas, setOrdemDasPerguntas] = useState({ ordemDasPerguntas: 0 })
     const [isSpinning, setIsSpinning] = useState<boolean>(false)
-    const [timeSimulated, setTimeSimulated] = useState<boolean>(false)
     const [youtubeOrThumbnailSelected, setYoutubeOrThumbnailSelected] = useState("")
     const [OrderQuestionsSelected, setOrderQuestionsSelected] = useState<number>(0)
-    const [hoursMultipled, setHoursMultipled] = useState<string | null>(null)
-
+    const [time, setTime] = useState<Time>({ tempoPorProva: '' })
     const router = useRouter()
     // const FakeUser = {
     //     author: 'Usuario'
@@ -70,9 +74,9 @@ export default function FormCreatedSimulated() {
     }
 
     const onFinish = (values) => {
-        console.log("newObject", values)
-        setIsSpinning(true)
-        const newObject = Object.assign(ordemDasPerguntas, values)
+        console.log("values", values)
+        // setIsSpinning(true)
+        const newObject = Object.assign(values, time)
         console.log("newObject", newObject)
         // setFormSimuled(newObject)
         // postSimuled(newObject)
@@ -109,7 +113,7 @@ export default function FormCreatedSimulated() {
     }
 
     function onChange(time, timeString) {
-        console.log(time, timeString);
+        setTime({ ...time, tempoPorProva: timeString })
     }
 
     return (
@@ -142,19 +146,19 @@ export default function FormCreatedSimulated() {
 
 
                 <Form.Item
-                    name="radio-button"
-                    label="Thumbnail Simulado"
-                    rules={[{ required: true, message: 'Please pick an item!' }]}
+                    name="youtubeOuThumbnail"
+                    label="Capa do simulado"
+                    rules={[{ required: true, message: 'Selecione uma das opções!' }]}
                 >
                     <Radio.Group onChange={e => youtubeOrThumbnail(e)}>
-                        <Radio.Button value="a">Upload Thumbnail</Radio.Button> <S.Or>Ou</S.Or>
-                        <Radio.Button value="b" style={{ padding: "0 21px 0 22px", marginTop: "4px" }}>Link Do Youtube</Radio.Button>
+                        <Radio.Button value="thumbnail">Imagem</Radio.Button> <S.Or>Ou</S.Or>
+                        <Radio.Button value="youtube" style={{ padding: "0 21px 0 22px", marginTop: "4px" }}>Link Do Youtube</Radio.Button>
                     </Radio.Group>
                 </Form.Item>
-                {youtubeOrThumbnailSelected == "a" ?
+                {youtubeOrThumbnailSelected == "thumbnail" ?
                     (
                         <Form.Item
-                            name="upload"
+                            name="thumbnail"
                             label="Upload"
                             valuePropName="fileList"
                             getValueFromEvent={normFile}
@@ -163,7 +167,7 @@ export default function FormCreatedSimulated() {
                                 <Button style={{ color: '#000000D9', border: '1px solid #d9d9d9' }} icon={<UploadOutlined />}>Click to upload</Button>
                             </Upload>
                         </Form.Item>
-                    ) : youtubeOrThumbnailSelected == "b" ?
+                    ) : youtubeOrThumbnailSelected == "youtube" ?
                         (
                             <Form.Item
                                 name='linkYoutube'
@@ -175,62 +179,54 @@ export default function FormCreatedSimulated() {
                         ) : (null)
                 }
                 <S.SubTitle>Ordem das perguntas</S.SubTitle>
-                <Radio.Group name="radiogroup" onChange={(e) => orderQuestions(e)}>
-                    <Space direction="vertical">
-                        <Radio value={1}>Sequencial</Radio>
-                        {OrderQuestionsSelected == 1 ?
-                            (
-                                <Form.Item
-                                    name='sequencial'
-                                    label="Quantidade de Perguntas"
-                                >
-                                    <InputNumber min={0} />
-                                </Form.Item>
-                            ) :
-                            (
-                                null
-                            )
-                        }
-                        <Radio value={2}>Aleatória</Radio>
-                        {OrderQuestionsSelected == 2 ?
-                            (
-                                <Form.Item
-                                    name='aleatoria'
-                                    label="Quantidade de Perguntas Por Simulado"
-                                >
-                                    <InputNumber min={0} />
-                                </Form.Item>
-                            ) :
-                            (
-                                null
-                            )
-                        }
-                    </Space>
-                </Radio.Group>
+                <Form.Item name="radio-group" rules={[{ required: true, message: 'Selecione uma das opções!' }]}>
+                    <Radio.Group name="radiogroup" onChange={(e) => orderQuestions(e)} >
+                        <Space direction="vertical">
+                            <Radio value={1}>Sequencial</Radio>
+                            {OrderQuestionsSelected == 1 ?
+                                (
+                                    <Form.Item
+                                        name='sequencial'
+                                        label="Quantidade de Perguntas"
+                                    >
+                                        <InputNumber min={0} />
+                                    </Form.Item>
+                                ) :
+                                (
+                                    null
+                                )
+                            }
+                            <Radio value={2}>Aleatória</Radio>
+                            {OrderQuestionsSelected == 2 ?
+                                (
+                                    <Form.Item
+                                        name='aleatoria'
+                                        label="Quantidade de Perguntas Por Simulado"
+                                    >
+                                        <InputNumber min={0} />
+                                    </Form.Item>
+                                ) :
+                                (
+                                    null
+                                )
+                            }
+                        </Space>
+                    </Radio.Group>
+                </Form.Item>
                 <Form.Item
                     name="tempoPorProva"
                     label="Tempo por prova"
-                    rules={[
-                        {
-                            message: 'Insira seu Tempo',
-                        },
-                    ]}
                 >
                     <TimePicker onChange={onChange} />
                 </Form.Item>
-
-
-
-
-
-                <Divider style={{ borderTop: "2px solid rgba(0, 0, 0, 0.06)" }} />
+                <Divider style={{ borderTop: "1px solid rgba(0, 0, 0, 0.06)", width: "100vw" }} />
                 <Form.Item>
                     <S.ContainerButton>
                         <Button type="primary" danger onClick={goTohome} htmlType="submit">
                             VOLTAR
                         </Button>
-                        <Button type="primary" htmlType="submit">
-                            SALVAR
+                        <Button type="primary" htmlType="submit" style={{ backgroundColor: '#46a6e6', marginLeft: '10px' }}>
+                            PROXIMO
                         </Button>
                     </S.ContainerButton>
                 </Form.Item>

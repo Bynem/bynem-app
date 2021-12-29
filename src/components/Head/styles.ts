@@ -16,7 +16,6 @@ export const Nav = styled.header`
   height: auto;
   border-bottom: 1px solid #F0F0F0;
   /* background: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(245,245,245,1) 52%, rgba(255,255,255,1) 100%); */
- 
 `;
 
 export const Hamburger = styled.div`
