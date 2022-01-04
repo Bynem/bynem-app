@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Head from "../../components/Head"
 import Footer from "../../components/Footer"
 import * as S from './styles'
-import Table from '../../components/TableSimuled'
+import Table from '../../components/TableSimulated'
 
-export default function MySimuleds() {
+export default function MySimulateds() {
     const [bottom, setBottom] = useState(false)
 
     return (

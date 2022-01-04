@@ -55,7 +55,7 @@ export default function TableAnt({ setBottom }: Table) {
     }
 
     useEffect(() => {
-        async function getSimuleds() {
+        async function getSimulateds() {
             await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
                 params: { filter: params }
 
@@ -72,7 +72,7 @@ export default function TableAnt({ setBottom }: Table) {
                     toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
                 });
         }
-        getSimuleds()
+        getSimulateds()
     }, [params])
 
     return (<>

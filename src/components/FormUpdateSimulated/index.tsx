@@ -50,7 +50,7 @@ export default function FormUpdateSimulated({ id }: Id) {
     const onFinish = (values) => {
         setIsSpinning(true)
         const newObject = Object.assign(ordemDasPerguntas, values)
-        postSimuled(newObject)
+        postSimulated(newObject)
     };
 
     function orderQuestions(e) {
@@ -58,7 +58,7 @@ export default function FormUpdateSimulated({ id }: Id) {
     }
 
     useEffect(() => {
-        async function getSimuledById() {
+        async function getSimulatedById() {
             await axios.get(`https://bynem-app.herokuapp.com/api/Simulado/${id}`).then(function (response) {
                 setSimulated(response.data)
             })
@@ -66,10 +66,10 @@ export default function FormUpdateSimulated({ id }: Id) {
                     toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
                 });
         }
-        getSimuledById()
+        getSimulatedById()
     }, [])
 
-    async function postSimuled(newObject) {
+    async function postSimulated(newObject) {
         if (newObject.titulo != undefined || newObject.descricao != undefined || newObject.linkYoutube != undefined) {
             const idSimulated = { id: id }
             const dataRequest = Object.assign(newObject, idSimulated)
@@ -80,12 +80,12 @@ export default function FormUpdateSimulated({ id }: Id) {
                 });
         }
 
-        goToMySimuleds()
+        goToMySimulateds()
         toast.success('Simulado salvo com sucesso ')
         setIsSpinning(false)
     }
 
-    function goToMySimuleds() {
+    function goToMySimulateds() {
         router.push("/meus-simulados")
     }
 
@@ -136,7 +136,7 @@ export default function FormUpdateSimulated({ id }: Id) {
                 <Divider style={{ borderTop: "2px solid rgba(0, 0, 0, 0.06)" }} />
                 <Form.Item>
                     <S.ContainerButton>
-                        <Button type="primary" danger onClick={goToMySimuleds} htmlType="submit">
+                        <Button type="primary" danger onClick={goToMySimulateds} htmlType="submit">
                             VOLTAR
                         </Button>
                         <Button type="primary" htmlType="submit">

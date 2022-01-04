@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import MySimuleds from '../templates/MySimuleds'
+import MySimulateds from '../templates/MySimulateds'
 import Loading from '../components/Loading'
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
           <Loading />
         ) :
         (<>
-          <MySimuleds />
+          <MySimulateds />
         </>
         )
     }

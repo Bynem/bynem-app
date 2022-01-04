@@ -28,7 +28,7 @@ const validateMessages = {
     },
 };
 
-export type FormCreatedSimuled = {
+export type FormCreatedSimulated = {
     titulo: string
     descricao: string
     linkYouTube?: string
@@ -87,7 +87,7 @@ export default function FormCreatedSimulated() {
         setOrdemDasPerguntas({ ...ordemDasPerguntas, ordemDasPerguntas: e.target.value })
     }
 
-    async function postSimuled(newObject) {
+    async function postSimulated(newObject) {
 
         await axios.post('https://bynem-app.herokuapp.com/api/Simulado', newObject, {
 
@@ -183,25 +183,13 @@ export default function FormCreatedSimulated() {
                     <Radio.Group name="radiogroup" onChange={(e) => orderQuestions(e)} >
                         <Space direction="vertical">
                             <Radio value={1}>Sequencial</Radio>
-                            {OrderQuestionsSelected == 1 ?
-                                (
-                                    <Form.Item
-                                        name='sequencial'
-                                        label="Quantidade de Perguntas"
-                                    >
-                                        <InputNumber min={0} />
-                                    </Form.Item>
-                                ) :
-                                (
-                                    null
-                                )
-                            }
                             <Radio value={2}>Aleatória</Radio>
                             {OrderQuestionsSelected == 2 ?
                                 (
                                     <Form.Item
                                         name='aleatoria'
                                         label="Quantidade de Perguntas Por Simulado"
+                                        rules={[{ required: true, message: 'Selecione a Quantidade de perguntas!' }]}
                                     >
                                         <InputNumber min={0} />
                                     </Form.Item>
@@ -222,7 +210,7 @@ export default function FormCreatedSimulated() {
                 <Divider style={{ borderTop: "1px solid rgba(0, 0, 0, 0.06)", width: "100vw" }} />
                 <Form.Item>
                     <S.ContainerButton>
-                        <Button type="primary" danger onClick={goTohome} htmlType="submit">
+                        <Button type="primary" danger onClick={goTohome} >
                             VOLTAR
                         </Button>
                         <Button type="primary" htmlType="submit" style={{ backgroundColor: '#46a6e6', marginLeft: '10px' }}>

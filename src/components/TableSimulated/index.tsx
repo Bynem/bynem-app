@@ -22,7 +22,7 @@ export type Table = {
 }
 
 
-export default function TableSimuled({ setBottom }: Table) {
+export default function TableSimulated({ setBottom }: Table) {
     const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
     const [data, setData] = useState<DataTable[]>()
     const [isSpinning, setIsSpinning] = useState(false)
@@ -81,7 +81,7 @@ export default function TableSimuled({ setBottom }: Table) {
             .then(function () {
                 setIsSpinning(false)
                 toast.success('Simulado Deletado com sucesso ')
-                getSimuleds()
+                getSimulateds()
 
             })
             .catch(function (error) {
@@ -103,10 +103,10 @@ export default function TableSimuled({ setBottom }: Table) {
 
     useEffect(() => {
 
-        getSimuleds()
+        getSimulateds()
     }, [params])
 
-    async function getSimuleds() {
+    async function getSimulateds() {
         await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
             params: { filter: params }
 

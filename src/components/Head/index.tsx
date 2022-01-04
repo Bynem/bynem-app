@@ -35,13 +35,21 @@ export default function Head({ home }: Home) {
           ) : (null)}
 
         <Link href="http://bynem.com.br/">
-          <S.MenuLink >Blog</S.MenuLink>
+          <a target="_blank">
+            <S.MenuLink >Blog</S.MenuLink>
+          </a>
         </Link>
         <Link href="/meus-simulados">
           <S.MenuLink >Meus Simulados</S.MenuLink>
         </Link>
         <Link href="/criar-simulados">
           <S.MenuLink >Criar Simulados</S.MenuLink>
+        </Link>
+        <Link href="/criar-perguntas/uuidFake">
+          <S.MenuLink >Criar Perguntas</S.MenuLink>
+        </Link>
+        <Link href="/respondendo/uuidSimulado/uuidUser">
+          <S.MenuLink >Exeução Simulado</S.MenuLink>
         </Link>
       </S.Menu>
     </S.Nav>

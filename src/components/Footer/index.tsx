@@ -9,7 +9,7 @@ export type FooterProps = {
 export default function Footer({ bottom }: FooterProps) {
   return (
     <S.Footer bottom={bottom}>
-      <Image src={"/bynem3.png"} width={180} height={18} />
+      <Image src={"/bynem3.png"} width={120} height={12} />
     </S.Footer>
   )
 }

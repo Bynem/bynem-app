@@ -1,16 +1,23 @@
+import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
-import CreateSimulated from '../templates/CreateSimulated'
-import Loading from '../components/Loading'
+import Loading from '../../components/Loading'
+import CreateQuestions from '../../templates/CreateQuestions'
 
-export default function CreateSimulatedPage() {
+export default function UpdateSimulatedPage() {
     const [loading, setLoading] = useState(false)
+    const router = useRouter()
+    const { uuid } = router.query
 
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 500)
+
+
+
     }, [])
+
 
     return <>
         {
@@ -19,7 +26,8 @@ export default function CreateSimulatedPage() {
                     <Loading />
                 ) :
                 (<>
-                    <CreateSimulated />
+                    {console.log("uuid no get", uuid)}
+                    <CreateQuestions uuid={uuid} />
                 </>
                 )
         }
