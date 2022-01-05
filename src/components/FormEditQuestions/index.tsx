@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Divider, Form, Input, Radio, Space, Switch, Upload } from 'antd';
+import { Button, Divider, Form, Input, Radio, Switch, Upload } from 'antd';
 import * as S from './styles'
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -27,7 +27,7 @@ const validateMessages = {
     },
 };
 
-export type FormCreatedSimulated = {
+export type FormEditQuestions = {
     titulo: string
     descricao: string
     linkYouTube?: string
@@ -42,7 +42,7 @@ export type Time = {
     tempoPorProva: string
 }
 
-export default function FormCreatedSimulated() {
+export default function FormEditQuestions() {
     const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
     const [isSpinning, setIsSpinning] = useState<boolean>(false)
     const [checked, setChecked] = useState<boolean>(false)
@@ -256,6 +256,18 @@ export default function FormCreatedSimulated() {
                     >
                         <Input.TextArea showCount rows={8} maxLength={500} />
                     </Form.Item>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        style={{
+                            backgroundColor: "#ff0000",
+                            borderRadius: "2px",
+                            marginRight: "10px",
+                            border: "none"
+                        }}
+                        size="large"
+                        onClick={onFinish} >Voltar</Button>
+
                     <Button
                         type="primary"
                         htmlType="submit"

@@ -48,8 +48,11 @@ export default function Head({ home }: Home) {
         <Link href="/criar-perguntas/uuidFake">
           <S.MenuLink >Criar Perguntas</S.MenuLink>
         </Link>
-        <Link href="/respondendo/uuidSimulado/uuidUser">
-          <S.MenuLink >Exeução Simulado</S.MenuLink>
+        <Link href="/vizualizar/simulado/5">
+          <S.MenuLink >Vizualizar Simulado</S.MenuLink>
+        </Link>
+        <Link href="/simulado/uuidSimulado">
+          <S.MenuLink >Execução Simulado</S.MenuLink>
         </Link>
       </S.Menu>
     </S.Nav>

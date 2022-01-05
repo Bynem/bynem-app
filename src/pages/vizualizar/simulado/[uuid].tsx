@@ -1,21 +1,18 @@
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
-import UpdateSimulated from '../../templates/UpdateSimulated'
-import Loading from '../../components/Loading'
+import VisualizeSimulated from '../../../templates/VisualizeSimulated'
+import Loading from '../../../components/Loading'
 
 export default function UpdateSimulatedPage() {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
-    const { id } = router.query
+    const { uuid } = router.query
 
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 500)
-
-
-
     }, [])
 
 
@@ -26,8 +23,8 @@ export default function UpdateSimulatedPage() {
                     <Loading />
                 ) :
                 (<>
-                    {console.log("id no get", id)}
-                    <UpdateSimulated id={id} />
+                    {console.log("id no get", uuid)}
+                    <VisualizeSimulated uuid={uuid} />
                 </>
                 )
         }

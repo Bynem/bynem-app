@@ -92,7 +92,7 @@ export default function TableSimulated({ setBottom }: Table) {
     }
 
     function UpdateSimulated(id) {
-        router.push(`/simulado/${id}`)
+        router.push(`/editar/simulado/${id}`)
     }
 
     function onSearchEnter(e) {
