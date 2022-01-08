@@ -3,7 +3,7 @@ import { Button, Table } from 'antd';
 import 'antd/dist/antd.css';
 import * as S from './styles';
 import { Input, Space } from 'antd';
-import axios from 'axios';
+import api from '../../service/api'
 import { toast } from 'react-toastify';
 import Link from 'next/link'
 
@@ -56,7 +56,7 @@ export default function TableAnt({ setBottom }: Table) {
 
     useEffect(() => {
         async function getSimulateds() {
-            await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
+            await api.get('api/Simulado', {
                 params: { filter: params }
 
             }).then(function (response) {

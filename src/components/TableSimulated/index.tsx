@@ -3,7 +3,7 @@ import { Button, Table } from 'antd';
 import 'antd/dist/antd.css';
 import * as S from './styles';
 import { Input, Space } from 'antd';
-import axios from 'axios';
+import api from '../../service/api';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router'
 import { Spin } from 'antd';
@@ -76,7 +76,7 @@ export default function TableSimulated({ setBottom }: Table) {
 
     async function DeleteSimulated(id) {
         setIsSpinning(true)
-        await axios.delete(`https://bynem-app.herokuapp.com/api/Simulado/${id}`, {
+        await api.delete(`api/Simulado/${id}`, {
         })
             .then(function () {
                 setIsSpinning(false)
@@ -107,7 +107,7 @@ export default function TableSimulated({ setBottom }: Table) {
     }, [params])
 
     async function getSimulateds() {
-        await axios.get('https://bynem-app.herokuapp.com/api/Simulado', {
+        await api.get('https://bynem-app.herokuapp.com/api/Simulado', {
             params: { filter: params }
 
         })

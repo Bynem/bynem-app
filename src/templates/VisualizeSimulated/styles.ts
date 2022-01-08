@@ -35,10 +35,6 @@ export const ContainerVideoOrImage = styled.div`
 export const ContainerDescription = styled.div`
     margin: 0 2rem 0 2rem;
     border: none;
-
-
-
-
 `
 
 export const ContainerButton = styled.div`

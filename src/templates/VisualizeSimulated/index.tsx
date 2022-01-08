@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { FormCreatedSimulated } from '../../components/FormUpdateSimulated';
 import { Input } from 'antd';
 import TableVizualizeQuestions from '../../components/TableVizualizeQuestions'
+import api from '../../service/api';
 
 export type Uuid = {
     uuid: string | string[];
@@ -19,7 +20,7 @@ export default function VisualizeSimulated({ uuid }: Uuid) {
 
     useEffect(() => {
         async function getSimulatedById() {
-            await axios.get(`https://bynem-app.herokuapp.com/api/Simulado/${uuid}`).then(function (response) {
+            await api.get(`api/Simulado/${uuid}`).then(function (response) {
                 console.log("response", response);
                 setSimulated(response.data)
             })
@@ -31,11 +32,11 @@ export default function VisualizeSimulated({ uuid }: Uuid) {
     }, [uuid])
 
     return <>
-        {simulated &&
+        {!simulated &&
             <>
                 <Head home={true} />
                 <S.Content>
-                    <S.Title>{simulated.titulo}</S.Title>
+                    <S.Title>{simulated?.titulo}</S.Title>
                     <Divider />
                     <S.ContainerVideoOrImage>
                         {/* {simulated.linkYouTube && */}
@@ -51,7 +52,7 @@ export default function VisualizeSimulated({ uuid }: Uuid) {
                     </S.ContainerVideoOrImage>
                     <Divider />
                     <S.ContainerDescription>
-                        <TextArea rows={4} disabled={true} style={{ color: "#373737" }} defaultValue={simulated.descricao} />
+                        <TextArea rows={4} disabled={true} style={{ color: "#373737" }} defaultValue={simulated?.descricao} />
                     </S.ContainerDescription>
                     <S.ContainerButton>
                         <Button

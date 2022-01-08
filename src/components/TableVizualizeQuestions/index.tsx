@@ -3,7 +3,8 @@ import { Space, Modal, Table, Spin, Form, Button } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Uuid } from '../../templates/VisualizeSimulated';
 import TextArea from 'antd/lib/input/TextArea';
-// import axios from 'axios';
+// import api from '../../service/api';
+
 // import { toast } from 'react-toastify';
 import { useRouter } from 'next/router'
 
@@ -28,12 +29,12 @@ export default function TableVizualizeQuestions(uuid: Uuid) {
         ]
 
     const viewQuestion = (id) => {
-        let idSimulado = 22
+        const idSimulado = 22
         router.push(`/vizualizar/questao/${idSimulado}/${id}`)
     }
 
     const editQuestion = (id) => {
-        let idSimulado = 20
+        const idSimulado = 20
         router.push(`/editar/questao/${idSimulado}/${id}`)
     }
 
@@ -43,6 +44,7 @@ export default function TableVizualizeQuestions(uuid: Uuid) {
             dataIndex: 'descricao',
             key: 'descricao',
         },
+        // fazer verificação de se o user é o dono 
         {
             title: 'Ação',
             dataIndex: 'id',
@@ -51,7 +53,6 @@ export default function TableVizualizeQuestions(uuid: Uuid) {
             render: (id) => (
                 <Space size="middle">
                     <a onClick={() => editQuestion(id)}>Editar</a>
-                    <a onClick={() => viewQuestion(id)}>Visualizar</a>
                 </Space>
             ),
         },
@@ -63,7 +64,7 @@ export default function TableVizualizeQuestions(uuid: Uuid) {
 
     const saveQuestion = async (dataModal) => {
         // dataModal <= ainda falta o id do user
-        // await axios.post('https://bynem-app.herokuapp.com/api/Simulado', dataModal, {
+        // await api.post('api/Simulado', dataModal, {
 
         // }).then(function () {
         //     toast.success('Questão salva con sucesso')

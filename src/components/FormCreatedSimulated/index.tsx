@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import api from '../../service/api'
 import { Form, Input, Button, Radio, Space, Divider, Upload, InputNumber, TimePicker } from 'antd';
 import * as S from './styles'
 import { Spin } from 'antd';
@@ -89,7 +89,7 @@ export default function FormCreatedSimulated() {
 
     async function postSimulated(newObject) {
 
-        await axios.post('https://bynem-app.herokuapp.com/api/Simulado', newObject, {
+        await api.post('api/Simulado', newObject, {
 
         }).then(function () {
             router.push('/')

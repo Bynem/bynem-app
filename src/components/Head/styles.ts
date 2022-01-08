@@ -3,12 +3,12 @@ import { NavBar } from '.';
 
 export const Nav = styled.header`
   padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
-  background: white;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-direction: row-reverse !important;
+  flex-wrap: wrap !important;
+  background: white !important;
   height: auto;
   top: 0;
   left: 0;

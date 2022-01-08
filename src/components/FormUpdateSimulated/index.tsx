@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import api from '../../service/api'
 import { Form, Input, Button, Radio, Space, Divider } from 'antd';
 import * as S from './styles'
 import { Spin } from 'antd';
@@ -59,7 +59,7 @@ export default function FormUpdateSimulated({ id }: Id) {
 
     useEffect(() => {
         async function getSimulatedById() {
-            await axios.get(`https://bynem-app.herokuapp.com/api/Simulado/${id}`).then(function (response) {
+            await api.get(`api/Simulado/${id}`).then(function (response) {
                 setSimulated(response.data)
             })
                 .catch(function (error) {
@@ -73,7 +73,7 @@ export default function FormUpdateSimulated({ id }: Id) {
         if (newObject.titulo != undefined || newObject.descricao != undefined || newObject.linkYoutube != undefined) {
             const idSimulated = { id: id }
             const dataRequest = Object.assign(newObject, idSimulated)
-            await axios.put('https://bynem-app.herokuapp.com/api/Simulado', dataRequest)
+            await api.put('api/Simulado', dataRequest)
                 .then().catch(function (error) {
                     setIsSpinning(false)
                     toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
