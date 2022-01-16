@@ -75,7 +75,13 @@ export default function FormCreatedSimulated() {
     }
 
     const onFinish = (values) => {
-        console.log("values", values)
+        if (values.linkYoutube) {
+            const urlYoutube = values.linkYoutube.replace('watch?v=', 'embed/');
+            values.linkYoutube = urlYoutube
+            const newObject = Object.assign(values, time)
+            // setFormSimuled(newObject)
+            postSimulated(newObject)
+        }
         // setIsSpinning(true)
         const newObject = Object.assign(values, time)
         console.log("newObject", newObject)

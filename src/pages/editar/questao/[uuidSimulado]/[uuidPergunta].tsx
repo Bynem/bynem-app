@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Loading from '../../../../components/Loading'
 import EditQuestions from '../../../../templates/EditQuestions'
 
-export default function UpdateSimulatedPage() {
+export default function EditQuestionsPage() {
     const router = useRouter()
 
     const { uuidSimulado, uuidPergunta } = router.query

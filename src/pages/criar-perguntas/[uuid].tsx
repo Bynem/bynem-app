@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Loading from '../../components/Loading'
 import CreateQuestions from '../../templates/CreateQuestions'
 
-export default function UpdateSimulatedPage() {
+export default function CreateQuestionsPage() {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
     const { uuid } = router.query
@@ -12,7 +12,7 @@ export default function UpdateSimulatedPage() {
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-        }, 500)
+        }, 1000)
 
 
 

@@ -6,6 +6,8 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router'
 import { InboxOutlined } from '@ant-design/icons';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import api from '../../service/api';
+import { toast } from 'react-toastify';
 
 const layout = {
     labelCol: {
@@ -46,8 +48,9 @@ export default function FormCreatedSimulated() {
     const antIcon = <LoadingOutlined style={{ fontSize: 34, color: "#E414B2" }} spin />
     const [isSpinning, setIsSpinning] = useState<boolean>(false)
     const [checked, setChecked] = useState<boolean>(false)
-    const [questionLabel, setQuestionLabel] = useState<number[]>([1])
+    const [questionLabel, setQuestionLabel] = useState<number[]>([1, 2])
     const [checkLabel, setCheckLabel] = useState<number[]>([])
+    const [formDataThumbnail, setformDataThumbnail] = useState<any>(null)
 
     const router = useRouter()
     // function goTohome() {
@@ -57,7 +60,43 @@ export default function FormCreatedSimulated() {
 
     const onFinish = (values) => {
         console.log("values", values)
+
+        postPergunta(values)
+
     };
+
+    async function postPergunta(values) {
+        await api.post('api/pergunta', values)
+            .then(response => {
+                console.log("response simu", response)
+                // if (response) {
+                //     postThumbnail(response.data.id)
+                // }
+
+            }).catch(function (error) {
+                // toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
+                // setIsSpinning(false)
+            });
+    }
+
+
+    async function postThumbnail(id) {
+        console.log("id", id)
+        console.log("thumbnail", formDataThumbnail)
+        const archive = new FormData()
+        archive.append('arquivo', formDataThumbnail)
+
+        await api.post(`api/pergunta/upload-thumbnail/${id}`, archive)
+            .then(function () {
+                router.push('/')
+                toast.success('Pergunta salvo com sucesso ')
+            }).catch(function (error) {
+                toast.error(`Um erro inesperado aconteceu ${error.response.status}`)
+                setIsSpinning(false)
+            });
+    }
+
+
 
     const normFile = (e) => {
         console.log('Upload event:', e);
@@ -70,11 +109,19 @@ export default function FormCreatedSimulated() {
     };
 
     function addQuestion() {
+        if (questionLabel.length == 10) {
+            toast.error(`Você não pode ter mais que 10 respostas!`)
+            return
+        }
         setQuestionLabel(questionLabel => [...questionLabel, (questionLabel.length + 1)])
         // CreatListQuestion(questionLabel)
     }
 
     const removeQuestion = remove => {
+        if (questionLabel.length == 2) {
+            toast.error(`Você não pode ter menos que 2 respostas!`)
+            return
+        }
         const removedArr = [...questionLabel].filter(question => question !== remove);
         setQuestionLabel(removedArr)
 

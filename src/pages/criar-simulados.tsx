@@ -3,10 +3,9 @@ import CreateSimulated from '../templates/CreateSimulated'
 import Loading from '../components/Loading'
 
 export default function CreateSimulatedPage() {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 500)
